@@ -211,7 +211,53 @@
                   </div>
         </main>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script src="/script.js"></script>
+    <script>
+ {
+    // let repo = null, page = 0, results = [];
+    
+    // do {
+    //     repo = axios.get(`https://capi-v2.sankakucomplex.com/tags?lang=en&page=${page++}`).then(res => 
+    //     {
+    //         console.log(results);
+    //         results = results.concat(res.data);
+    //     }
+    // );
+    // } while (page < 20)
+
+// Init a bigData array to push new data on each iteration
+let bigData = [];
+
+async function fetchAllPaginateData(
+    pageKey = 35 /** init by default page index 0 */,
+) {
+    try {
+        const fetchURL = `https://capi-v2.sankakucomplex.com/tags?lang=en&page=${pageKey++}`;
+        const response = await axios.get(fetchURL);
+        const { data } = response; // Your api should give you a total page count, result or something to setup your iteration
+        console.log(data);
+        bigData = bigData.concat(data); // push on big data response data
+
+        // if current page isn't the last, call the fetch feature again, with page + 1
+        if (
+            pageKey < 100 // (this is a test dev condition to limit for 10 result) */
+        ) {
+            pageKey++;
+            await new Promise((resolve) => setTimeout(resolve, 1)); // setup a sleep depend your api request/second requirement.
+            return await fetchAllPaginateData(pageKey);
+        }
+        return console.info('Data complete.');
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+fetchAllPaginateData().then(() => console.table(bigData));    
+
+} 
+
+    </script>
   </body>
 </html>
