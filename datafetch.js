@@ -15,10 +15,10 @@
 let bigData = [];
 
 async function fetchAllPaginateData(
-    pageKey = 300 /** init by default page index 0 */,
+    pageKey = 0 /** init by default page index 0 */,
 ) {
     try {
-        const fetchURL = `https://capi-v2.sankakucomplex.com/tags?lang=en&page=${pageKey++}`;
+        const fetchURL = `https://capi-v2.sankakucomplex.com/tags?lang=en&page=${pageKey}`;
         const response = await axios.get(fetchURL);
         const { data } = response; // Your api should give you a total page count, result or something to setup your iteration
         let arrayTag = data.map(({ name }) => name)
@@ -27,10 +27,10 @@ async function fetchAllPaginateData(
 
         // if current page isn't the last, call the fetch feature again, with page + 1
         if (
-            pageKey < 400 // (this is a test dev condition to limit for 10 result) */
+            pageKey < 2 // (this is a test dev condition to limit for 10 result) */
         ) {
             pageKey++;
-            await new Promise((resolve) => setTimeout(resolve, 0)); // setup a sleep depend your api request/second requirement.
+            await new Promise((resolve) => setTimeout(resolve, 1)); // setup a sleep depend your api request/second requirement.
             return await fetchAllPaginateData(pageKey);
         }
         return console.info('Data complete.');
@@ -39,7 +39,7 @@ async function fetchAllPaginateData(
     }
 }
 
-fetchAllPaginateData().then(() => {console.table(bigData);});   
+fetchAllPaginateData().then(() => {console.log(bigData); console.table(bigData);});   
 
 
 
