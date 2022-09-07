@@ -6,6 +6,10 @@
     "author": "Bui Minh",
     "action":{
         "default_popup": "index.html",
-        "default_title": "Latest Covid Report"
-    }
+        "default_title": "Random Tag"
+    },
+    "content_security_policy": {
+        "script-src": "self",
+        "object-src": "self"
+     }
 }
