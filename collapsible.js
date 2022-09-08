@@ -30,31 +30,30 @@
 
 var menuButton1 = document.getElementById("menuButton1");
 menuButton1.addEventListener("click", function(){
-    document.getElementById("content1").style.display = "block";
     document.getElementById("content1").classList.toggle("show");
 
 })
 var menuButton2 = document.getElementById("menuButton2");
 menuButton2.addEventListener("click", function(){
-    document.getElementById("content2").style.display = "block";
+    document.getElementById("content2").classList.toggle("show");
 })
 var menuButton3 = document.getElementById("menuButton3");
 menuButton3.addEventListener("click", function(){
-    document.getElementById("content3").style.display = "block";
+    document.getElementById("content3").classList.toggle("show");
 })
 var menuButton4 = document.getElementById("menuButton4");
 menuButton4.addEventListener("click", function(){
-    document.getElementById("content4").style.display = "block";
+    document.getElementById("content4").classList.toggle("show");
 })
 var menuButton5 = document.getElementById("menuButton5");
 menuButton5.addEventListener("click", function(){
-    document.getElementById("content5").style.display = "block";
+    document.getElementById("content5").classList.toggle("show");
 })
 var menuButton6 = document.getElementById("menuButton6");
 menuButton6.addEventListener("click", function(){
-    document.getElementById("content6").style.display = "block";
+    document.getElementById("content6").classList.toggle("show");
 })
 var menuButton7 = document.getElementById("menuButton7");
 menuButton7.addEventListener("click", function(){
-    document.getElementById("content7").style.display = "block";
+    document.getElementById("content7").classList.toggle("show");
 })

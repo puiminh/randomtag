@@ -1,4 +1,4 @@
-let suggestions = [
+let bigData = [
     "Channel",
     "CodingLab",
     "CodingNepal",
