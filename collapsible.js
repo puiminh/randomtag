@@ -28,10 +28,11 @@
 //     });
 //   }
 
+var i;
+
 var menuButton1 = document.getElementById("menuButton1");
 menuButton1.addEventListener("click", function(){
     document.getElementById("content1").classList.toggle("show");
-
 })
 var menuButton2 = document.getElementById("menuButton2");
 menuButton2.addEventListener("click", function(){
@@ -57,3 +58,18 @@ var menuButton7 = document.getElementById("menuButton7");
 menuButton7.addEventListener("click", function(){
     document.getElementById("content7").classList.toggle("show");
 })
+
+var overlayAll = document.getElementsByClassName("overlay");
+function closeAll() {
+    for (i = 0; i < overlayAll.length; i++) {
+        overlayAll[i].classList.remove("show");
+    }
+}
+
+var headerSetting = document.getElementsByClassName("heading-setting");
+for (i = 0; i < headerSetting.length; i++) {
+    headerSetting[i].addEventListener("click", function() {
+        console.log("click");
+        closeAll();
+});
+}
