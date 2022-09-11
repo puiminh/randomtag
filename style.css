@@ -1182,3 +1182,87 @@ margin: auto
   box-shadow: -3px -3px 5px rgba(255,255,255,.5),
               3px 3px 5px #00b33c;
 }
+
+/* Close button */
+.close {
+  width: 25px;
+  height: 25px;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background: #455a64;
+  border-radius: 50%;
+  box-shadow: 0 0 20px -5px rgba(255, 255, 255, .5);
+  transition: 0.25s ease-in-out;
+  cursor: pointer;
+  animation: fade-in 0.5s ease-out 0.25s both;
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: scale(1.1);
+ }
+}
+
+.close svg {
+  vertical-align: baseline;
+}
+
+.close .circle path {
+  stroke: rgba(255, 255, 255, 1);
+  fill: none;
+  stroke-width: 1px;
+  stroke-linecap: round;
+  animation: progress 0.5s ease-out 0.25s both;
+}
+@keyframes progress {
+  from {
+    stroke-dasharray: 0 100;
+ }
+}
+.close span {
+  display: block;
+  width: 5.25px;
+  height: 2px;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 0 20px -5px rgba(255, 255, 255, .5);
+  border-radius: 20px;
+  position: absolute;
+  transition: 0.25s ease-in-out;
+  animation: slide-in 0.5s ease-in-out 0.25s both;
+}
+@keyframes slide-in {
+  from {
+    width: 0;
+ }
+}
+.close span:nth-child(1) {
+  top: 7.3333333333px;
+  left: 8.3333333333px;
+  transform: rotate(45deg);
+  transform-origin: top left;
+}
+.close span:nth-child(2) {
+  top: 7.3333333333px;
+  right: 8.3333333333px;
+  transform: rotate(-45deg);
+  transform-origin: top right;
+}
+.close span:nth-child(3) {
+  bottom: 7.3333333333px;
+  left: 8.3333333333px;
+  transform: rotate(-45deg);
+  transform-origin: bottom left;
+}
+.close span:nth-child(4) {
+  bottom: 7.3333333333px;
+  right: 8.3333333333px;
+  transform: rotate(45deg);
+  transform-origin: bottom right;
+}
+.close:hover {
+  background: #37474f;
+}
+.close:hover span {
+  width: 6.25px;
+}

@@ -47,3 +47,4 @@ function playSound(a) {
 document.addEventListener("keydown", function(event) {
     playSound(event.key);
 });
+
