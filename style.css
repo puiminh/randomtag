@@ -6,6 +6,11 @@
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
+
+a {
+  text-decoration: none;
+}
+
 .wrapper{
   width: 605px;
   background: #fff;
@@ -1045,7 +1050,7 @@ margin: auto
 }
 
 .active:after {
-  content: "\2212";
+  content: "";
 }
 
 .content {
@@ -1287,4 +1292,55 @@ margin: auto
 }
 .close:hover span {
   width: 6.25px;
+}
+
+/* tag */
+
+.link-tag-wrapper {
+  z-index: 15;
+  position: absolute;
+  left: 55px;
+  padding-top: 5px;
+  width: 300px;
+  line-height: 20px;
+
+}
+
+.link-tag {
+}
+
+.tag {
+    /* display: inline-block; */
+    border-radius: 3px;
+    padding: 3px 12px;
+    color: #b2becd;
+    font-weight: 800;
+    /* margin: 1px 1px; */
+    font-size: 8px;
+
+    position: relative;
+    background: transparent;
+    color: white;
+    text-transform: uppercase;
+}
+
+.tag-angular {
+  color: #fff
+}
+
+.tag::before {
+	content: ''; /* To generate the box */
+	position: absolute;
+	top: 0; right: 0; bottom: 0; left: 0;
+	z-index: -1;
+	background: #dc0530;
+	transform: skew(-30deg);
+  border-radius: 3px;
+}
+
+.tag:hover {
+  color: #fff;
+  text-shadow: 0 0 5px #fff,
+               0 0 10px #fff, 
+               0 0 20px #fff;
 }
