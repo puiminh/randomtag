@@ -8,28 +8,10 @@ let linkTag = searchWrapper.querySelector("a");
 let webLink;
 let tagList = [];
 
-
+let o = 0; // iterate over children elements inside dropdown
 // if user press any key and release
 inputBox.onkeyup = (e)=>{
-    switch (e.keyCode) {
-        case 37:
-            console.log("left"); //show the message saying left"
-            return;
-        case 38:
-            console.log("up"); //show the message saying up"
-            return;
-        case 39:
-            console.log("right"); //show the message saying right"
-            return;
-        case 40:
-            console.log("down"); //show the message saying down"
-            return;
-        case 13:
-            console.log("enter");
-            return;
-        default:
-            break;
-    } 
+    console.log("running")
     let userData = e.target.value; //user enetered data
     let emptyElements = [];
     let emptySearch = [];
@@ -48,7 +30,7 @@ inputBox.onkeyup = (e)=>{
             // passing return data inside li tag
             return data = `<li>${data}</li>`;
         });
-        console.log("allData vs searchData",bigData,emptyElements)
+        console.log("allData vs searchData",userData,bigData,emptyElements)
 
         searchWrapper.classList.add("active"); //show autocomplete box
         showSuggestions(emptyElements);
@@ -62,13 +44,13 @@ inputBox.onkeyup = (e)=>{
     }else{
         searchWrapper.classList.remove("active"); //hide autocomplete box
     }
-    let o = 0; // iterate over children elements inside dropdown
     const dropdown = document.querySelector(".autocom-box");
     const childs = dropdown.children; // get all dropdown elements
     console.log("all dropdown: ", childs);
     // attach keyboard events
-    window.addEventListener("keyup", event => {
-      switch(event.code) {
+
+
+      switch(e.code) {
         case "ArrowDown":
 
           if (o>childs.length) {
@@ -97,16 +79,19 @@ inputBox.onkeyup = (e)=>{
             console.log("select by Enter:", o,childs[o-1]);
             inputBox.value = '';
 
-            setTimeout(() => {
               select(childs[o-1])
               tagList.push(`<a class="button tag tag-angular"  href="#"><span class="">${childs[o-1].textContent}</span></a>`);
               showTagList(tagList);
-            },1000);
 
 
           break;
+        default: 
+          break;
       }
-    });
+
+    if (e.isComposing || e.keyCode === 229) {
+      return;
+    }
 }
 
 function select(element){
