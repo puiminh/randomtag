@@ -3,8 +3,11 @@ const searchWrapper = document.querySelector(".search-box");
 const inputBox = searchWrapper.querySelector("input");
 const suggBox = searchWrapper.querySelector(".autocom-box");
 const icon = searchWrapper.querySelector(".btn-search");
+const tagBox = document.querySelector(".link-tag-wrapper")
 let linkTag = searchWrapper.querySelector("a");
 let webLink;
+let tagList = [];
+
 
 // if user press any key and release
 inputBox.onkeyup = (e)=>{
@@ -45,7 +48,7 @@ inputBox.onkeyup = (e)=>{
             // passing return data inside li tag
             return data = `<li>${data}</li>`;
         });
-        console.log(bigData,emptyElements)
+        console.log("allData vs searchData",bigData,emptyElements)
 
         searchWrapper.classList.add("active"); //show autocomplete box
         showSuggestions(emptyElements);
@@ -62,11 +65,12 @@ inputBox.onkeyup = (e)=>{
     let o = 0; // iterate over children elements inside dropdown
     const dropdown = document.querySelector(".autocom-box");
     const childs = dropdown.children; // get all dropdown elements
-    console.log(childs);
+    console.log("all dropdown: ", childs);
     // attach keyboard events
-    window.addEventListener("keydown", event => {
+    window.addEventListener("keyup", event => {
       switch(event.code) {
         case "ArrowDown":
+
           if (o>childs.length) {
             o = 0;
             break;
@@ -90,13 +94,18 @@ inputBox.onkeyup = (e)=>{
            o--;
           break;
         case "Enter":
-          console.log(o,childs[o-1]);
-          select(childs[o-1]);
+            console.log("select by Enter:", o,childs[o-1]);
+            inputBox.value = '';
+
+            setTimeout(() => {
+              select(childs[o-1])
+              tagList.push(`<a class="button tag tag-angular"  href="#"><span class="">${childs[o-1].textContent}</span></a>`);
+              showTagList(tagList);
+            },1000);
+
+
           break;
       }
-    if (event.isComposing || event.keyCode === 229) {
-      return;
-    }
     });
 }
 
@@ -110,6 +119,7 @@ function select(element){
         linkTag.click();
     }
     searchWrapper.classList.remove("active");
+
 }
 
 function showSuggestions(list){
@@ -122,5 +132,23 @@ function showSuggestions(list){
       }
     suggBox.innerHTML = listData;
 }
+function showTagList(list){
+  let listData;
+  console.log("The list of tag",list);
+  if(!list.length){
+  }else{
+      listData = list.join('');
+    }
+    console.log("The list of tag",listData);
+  
+  tagBox.innerHTML = listData;
+}
 
 
+function debounce(func, timeout = 300){
+  let timer;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => { func.apply(this, args); }, timeout);
+  };
+}
