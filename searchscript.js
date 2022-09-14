@@ -4,7 +4,8 @@ const inputBox = searchWrapper.querySelector("input");
 const suggBox = searchWrapper.querySelector(".autocom-box");
 const icon = searchWrapper.querySelector(".btn-search");
 const tagBox = document.querySelector(".link-tag-wrapper")
-let linkTag = searchWrapper.querySelector("a");
+const closeButton = document.querySelector(".clear-tag-list-button")
+const linkTag = searchWrapper.querySelector("a");
 let webLink;
 let tagList = [];
 
@@ -80,10 +81,11 @@ inputBox.onkeyup = (e)=>{
             inputBox.value = '';
 
               select(childs[o-1])
-              tagList.push(`<a class="button tag tag-angular"  href="#"><span class="">${childs[o-1].textContent}</span></a>`);
-              showTagList(tagList);
-
-
+          break;
+        
+        case "Space":
+            inputBox.value = "";
+            searchWrapper.classList.remove("active");
           break;
         default: 
           break;
@@ -104,7 +106,8 @@ function select(element){
         linkTag.click();
     }
     searchWrapper.classList.remove("active");
-
+    tagList.push(`<a class="button tag tag-angular"  href="#"><span class="">${element.textContent}</span></a>`);
+    showTagList(tagList);
 }
 
 function showSuggestions(list){
@@ -121,12 +124,14 @@ function showTagList(list){
   let listData;
   console.log("The list of tag",list);
   if(!list.length){
+    tagBox.innerHTML = '';
   }else{
       listData = list.join('');
+      closeButton.classList.remove("hide");
+      console.log("The list of tag",listData);
+      tagBox.innerHTML = listData;
     }
-    console.log("The list of tag",listData);
-  
-  tagBox.innerHTML = listData;
+
 }
 
 
@@ -137,3 +142,11 @@ function debounce(func, timeout = 300){
     timer = setTimeout(() => { func.apply(this, args); }, timeout);
   };
 }
+
+closeButton.addEventListener("click", ()=> {
+  console.log("Click");
+  tagList = [];
+  showTagList(tagList);
+  closeButton.classList.add("hide");
+  inputBox.value = '';
+})

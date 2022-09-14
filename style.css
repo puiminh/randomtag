@@ -1,11 +1,18 @@
 /* Import Google Font - Poppins */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+  --red: #ff0037;
+}
+
+
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
+
 
 a {
   text-decoration: none;
@@ -984,6 +991,8 @@ margin: auto
   pointer-events: none;
   max-height: 280px;
   overflow-y: auto;
+  position: absolute;
+  z-index: 20;
 }
 
 .active .autocom-box{
@@ -999,17 +1008,21 @@ margin: auto
   width: 100%;
   cursor: default;
   border-bottom: 2px solid #ff0037;
+  background-color: #0c0f15;
 }
 
 .active .autocom-box li{
   display: block;
+
 }
 .autocom-box li:hover{
   background: #202842;
+  font-weight: 800;
 }
 
 .dropbtn-selected {
-  background-color: #202842;
+  background-color: #202842!important;
+  font-weight: 800;
 }
 
 .search-input .icon{
@@ -1082,7 +1095,11 @@ margin: auto
   cursor: pointer;
 }
 .show {
-  display: block;
+  display: block!important;
+}
+
+.hide {
+  display: none!important;
 }
 
 #content1 {
@@ -1214,12 +1231,8 @@ margin: auto
 .close {
   width: 25px;
   height: 25px;
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  background: #455a64;
+  position: absolute;
   border-radius: 50%;
-  box-shadow: 0 0 20px -5px rgba(255, 255, 255, .5);
   transition: 0.25s ease-in-out;
   cursor: pointer;
   animation: fade-in 0.5s ease-out 0.25s both;
@@ -1234,7 +1247,7 @@ margin: auto
 .close svg {
   vertical-align: baseline;
 }
-
+/* 
 .close .circle path {
   stroke: rgba(255, 255, 255, 1);
   fill: none;
@@ -1246,23 +1259,27 @@ margin: auto
   from {
     stroke-dasharray: 0 100;
  }
-}
+} */
 .close span {
   display: block;
-  width: 5.25px;
+  width: 6.25px;
   height: 2px;
-  background: rgba(255, 255, 255, 1);
-  box-shadow: 0 0 20px -5px rgba(255, 255, 255, .5);
+  background: var(--red);
   border-radius: 20px;
   position: absolute;
   transition: 0.25s ease-in-out;
-  animation: slide-in 0.5s ease-in-out 0.25s both;
+  animation: slide-in 0.25s ease-in-out 0.25s both;
 }
 @keyframes slide-in {
   from {
     width: 0;
  }
 }
+
+.close span {
+  box-shadow: 0 0 3px rgb(255, 114, 114);
+}
+
 .close span:nth-child(1) {
   top: 7.3333333333px;
   left: 8.3333333333px;
@@ -1291,7 +1308,12 @@ margin: auto
   background: #37474f;
 }
 .close:hover span {
-  width: 6.25px;
+  width: 4.25px;
+}
+
+.clear-tag-list-button {
+  left: 15px;
+  margin-top: 6px;
 }
 
 /* tag */
