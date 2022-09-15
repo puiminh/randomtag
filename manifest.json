@@ -1,5 +1,5 @@
 {
-    "name": "Covid-19 Stats UK",
+    "name": "RandomTag",
     "version": "1.0.0",
     "description": "latest covid data of UK",
     "manifest_version": 3,
@@ -11,5 +11,10 @@
     "content_security_policy": {
         "script-src": "self",
         "object-src": "self"
-     }
+     },
+     "icons": {
+        "18" : "randomTagLogo.png",
+        "32" : "randomTagLogo.png",
+        "64" : "randomTagLogo.png"
+      }
 }
