@@ -1,7 +1,7 @@
 {
     "name": "RandomTag",
     "version": "1.0.0",
-    "description": "latest covid data of UK",
+    "description": "Random Tag",
     "manifest_version": 3,
     "author": "Bui Minh",
     "action":{
