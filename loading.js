@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function(event) { 
     var counter = 0;
     var c = 0;
-    var i = setInterval(function(){
+    var loadingFunc = setInterval(function(){
         document.querySelector(".loading-page .counter h1").textContent = c + "%";
         document.querySelector(".loading-page .counter hr").style.width = c + "%";
         //$(".loading-page .counter").css("background", "linear-gradient(to right, #f60d54 "+ c + "%,#0d0d0d "+ c + "%)");
@@ -11,11 +11,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
       */
       counter++;
       c++;
-        console.log(c)
+        // console.log(c)
       if(counter == 101) {
-          clearInterval(i);
+          clearInterval(loadingFunc);
       }
     }, 50);
 
-    i();
+    loadingFunc();
 });
