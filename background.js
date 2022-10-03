@@ -1,4 +1,4 @@
-(() => {
+(async () => {
   console.log('background is running...')
   // chrome.runtime.onMessageExternal.addListener( (request, sender, sendResponse) => {
   //     console.log("Received message from " + sender + ": ", request);
@@ -23,5 +23,17 @@
 
     }
   });
-
+  getCurrentTab().then((e) => {
+    console.log("run 1",e);
+  })
 })()
+
+async function getCurrentTab() {
+  let queryOptions = { active: true, lastFocusedWindow: true };
+  // `tab` will either be a `tabs.Tab` instance or `undefined`.
+  let a = [];
+  console.log("run 2",a);
+  let tab = await chrome.tabs.query({});
+  console.log("run 4",tab);
+  return tab;
+}
