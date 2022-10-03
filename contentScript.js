@@ -13,8 +13,9 @@ var fit = false;
   document.head.appendChild(styleSheet);
 
         console.log('page is fully loaded');
-        // console.log(document.querySelector(".photoImg img").src);
-        addImgView(document.querySelector(".photoImg img").src);
+        console.log(document.querySelector("#post-content img").src);
+        
+        addImgView(document.querySelector("#post-content img").src);
       });
     
     chrome.runtime.onMessage.addListener((obj, sender, response) => {
@@ -37,6 +38,7 @@ function addImgView(link){
     const span = document.createElement("span");
     const text = document.createTextNode("x");
     const img = document.createElement("img");
+    const sideBar = document.querySelector(".sidebar");
     span.appendChild(text);
     span.setAttribute("style", `
     position: absolute;
@@ -51,7 +53,7 @@ function addImgView(link){
     div.appendChild(span);
     div.setAttribute("style",`display: block;
     position: fixed;
-    z-index: 999;
+    z-index: 10001;
     left: 0;
     top: 0;
     overflow: auto;
@@ -69,13 +71,16 @@ function addImgView(link){
     transition: 0.3s;`);
     div.appendChild(img);
     document.body.appendChild(div);
+
+    sideBar.style.top = "-400px";
     
-    document.querySelector(".photoImg img").addEventListener("click", ()=> {
+    document.querySelector("#post-content img").addEventListener("click", ()=> {
       div.style.display = "block"; 
     })
 
     span.addEventListener('click', () => {
       div.style.display = "none";
+      sideBar.style.top = "0";
     })
 
     img.addEventListener('click', () => {
@@ -86,13 +91,18 @@ function addImgView(link){
 }
 
 function fitScreenFunc(div,img) {
+  // div.style.overflow = "hidden";
+  img.style.width= "98vw";
+  img.style.height= "auto";
+  img.style.padding= "20px"; 
+  fit = true;
+}
+/*
   div.style.overflow = "hidden";
   img.style.height= "98vh";
   img.style.padding= "20px"; 
   fit = true;
-  
-}
-
+*/
 function defaultFunc(div,img) {
   div.style.overflow = "auto";
   img.style.height= "auto";
