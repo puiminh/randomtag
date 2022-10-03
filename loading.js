@@ -17,5 +17,5 @@ document.addEventListener("DOMContentLoaded", function(event) {
       }
     }, 50);
 
-    loadingFunc();
+  // loadingFunc(); 
 });
