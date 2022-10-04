@@ -10,10 +10,12 @@ var allTab = [];
         case 'A':
         case 'a':
             sendMess({tab: "back"});
+            console.log('sending')
             break;
         case 'd':
         case 'D':
-            sendMess({tab: "next"});   
+            sendMess({tab: "next"});
+            console.log('sending')
             break;
     }
   }
@@ -34,8 +36,8 @@ var allTab = [];
 
         console.log('page is fully loaded');
         // console.log(document.querySelector(".photoImg img").src);
-        addImgView(document.querySelector(".photoImg img").src);
-
+        addImgView(document.querySelector("#post-content img").src);
+        //#post-content img
 
       });
     
@@ -94,7 +96,7 @@ function addImgView(link){
     div.appendChild(img);
     document.body.appendChild(div);
     
-    document.querySelector(".photoImg img").addEventListener("click", ()=> {
+    document.querySelector("#post-content img").addEventListener("click", ()=> {
       div.style.display = "block"; 
     })
 
@@ -125,7 +127,5 @@ function defaultFunc(div,img) {
 }
 
 function sendMess(mess) {
-  chrome.runtime.sendMessage(mess, function(response) {
-    // console.log(response.farewell);
-  });
+  chrome.runtime.sendMessage(mess);
 }
