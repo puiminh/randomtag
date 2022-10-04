@@ -1,6 +1,26 @@
 var fit = false;
-
+var allTab = [];
 (() => {
+  
+  document.onkeydown = function(evt){
+    evt = evt || window.event;
+    if(evt.shiftKey){
+    console.log('Shift');
+    switch (evt.key){
+        case 'A':
+        case 'a':
+            sendMess({tab: "back"});
+            break;
+        case 'd':
+        case 'D':
+            sendMess({tab: "next"});   
+            break;
+    }
+  }
+};
+
+
+
     console.log('contentScript is running...')
 
     window.addEventListener('load', (event) => {
@@ -15,11 +35,15 @@ var fit = false;
         console.log('page is fully loaded');
         // console.log(document.querySelector(".photoImg img").src);
         addImgView(document.querySelector(".photoImg img").src);
+
+
       });
     
     chrome.runtime.onMessage.addListener((obj, sender, response) => {
             const {type, id } = obj;
             console.log(obj);
+            allTab = obj.allTab;
+            console.log(allTab);
             // if (type === "NEW") {
             //   console.log("NEW: ",id);
             // } else {
@@ -27,10 +51,10 @@ var fit = false;
             // }
           });     
     console.log("makesure");
-
-    
-    
+    // chrome.tabs.update(281475921,{selected:true});
 })();
+
+
 
 function addImgView(link){
     const div = document.createElement("div");
@@ -98,4 +122,10 @@ function defaultFunc(div,img) {
   img.style.height= "auto";
   img.style.padding= "60px";
   fit = false; 
+}
+
+function sendMess(mess) {
+  chrome.runtime.sendMessage(mess, function(response) {
+    // console.log(response.farewell);
+  });
 }
