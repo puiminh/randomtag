@@ -16,3 +16,7 @@ getCurrentTab().then((e) => {
     chrome.tabs.sendMessage(e.currentTab.id, e);
     // chrome.tabs.update(281475921,{selected:true})
   })
+
+document.querySelector('#menuButton7').addEventListener('click', ()=> {
+  window.close();
+})

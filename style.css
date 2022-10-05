@@ -1468,7 +1468,7 @@ svg {
       color: #f60d54; }
     .loading-page .counter h1 {
       color: white;
-      font-size: 60px;
+      font-size: 20px;
       margin-top: -10px; }
     .loading-page .counter hr {
       background: #f60d54;
@@ -1485,3 +1485,10 @@ svg {
       width: 0px;
       overflow: hidden;
       color: #f60d54; }
+
+    .counter-text {
+      max-width: 200px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }

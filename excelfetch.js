@@ -1,4 +1,4 @@
-let bigData = [];
+bigData = [];
 
 let justFetchOne = true;
 
@@ -28,7 +28,20 @@ async function fetchByExcel(searchKey = '') {
         console.error(err);
     }
 }
-fetchByExcel()
+fetchByExcel().then(()=> {
+    const jsonTags = JSON.stringify(bigData);
+    localStorage.setItem('tags', jsonTags);
+    chrome.storage.local.set({tags: jsonTags}, function() {
+        console.log('Value is set to ');
+      });
+    chrome.storage.local.get(['tags'], function(result) {
+        try {
+            console.log('Value currently is ' + JSON.parse(result.tags));           
+        } catch (error) {
+            console.error(error)
+        }
+      });
+})
 
 // if (justFetchOne)
 // fetchByExcel().then(()=>{

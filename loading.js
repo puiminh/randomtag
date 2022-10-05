@@ -1,9 +1,11 @@
-document.addEventListener("DOMContentLoaded", function(event) { 
+document.querySelector('#menuButton4').addEventListener("click", function(event) { 
     var counter = 0;
     var c = 0;
+    console.log(bigData)
     var loadingFunc = setInterval(function(){
-        document.querySelector(".loading-page .counter h1").textContent = c + "%";
-        document.querySelector(".loading-page .counter hr").style.width = c + "%";
+        if(counter%2 == 0)
+        document.querySelector(".loading-page .counter h1").textContent = `${bigData[c].name}`;
+        // document.querySelector(".loading-page .counter hr").style.width = c + "%";
         //$(".loading-page .counter").css("background", "linear-gradient(to right, #f60d54 "+ c + "%,#0d0d0d "+ c + "%)");
   
       /*
@@ -12,10 +14,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
       counter++;
       c++;
         // console.log(c)
-      if(counter == 101) {
+      if(counter == 40) {
           clearInterval(loadingFunc);
       }
-    }, 50);
+    }, 100);
 
-  // loadingFunc(); 
+  // 
 });
+// loadingFunc(); 
