@@ -1,9 +1,11 @@
 var fit = false;
 var first_press = false;
 var allTab = [];
+var imgNow = [];
 (() => {
   
   document.onkeydown = function(evt){
+    getAllImgInView();
     // evt = evt || window.event;
     // if(evt.shiftKey){
     // console.log('Shift');
@@ -18,7 +20,14 @@ var allTab = [];
         case 'ArrowRight':
             key_press({tab: "next"});
             break;
+        case '1':
+            newTab(1);
+            break;
+        case '2':
+            newTab(2);
+            break;
     }
+
   // }
 };
     console.log('contentScript is running...')
@@ -34,8 +43,9 @@ var allTab = [];
 
         console.log('page is fully loaded');
         // console.log(document.querySelector(".photoImg img").src);
-        addImgView(document.querySelector("#post-content img").src);
+        if (document.querySelector("#post-content img")) addImgView(document.querySelector("#post-content img").src);
         //#post-content img
+        getAllImgInView();
 
       });
     
@@ -92,6 +102,7 @@ function addImgView(link){
     max-width:100%; height:auto
     transition: 0.3s;`);
     div.appendChild(img);
+    img.focus();
     document.body.appendChild(div);
     
     document.querySelector("#post-content img").addEventListener("click", ()=> {
@@ -139,7 +150,33 @@ function key_press(mess) {
   }
 }
 
+function newTab(number) {
+  window.open(imgNow[number]);
+}
+
 function do_double_press(mess) {
   sendMess(mess);
   console.log('sending');
+}
+function getAllImgInView() {
+  console.log("running getAllImgInView...")
+  let count = 0;
+  let list = document.querySelectorAll('.thumb a');
+  return list.forEach((e)=> {
+    if(isInViewport(e)){
+      count++;
+      console.log(e.href);
+      imgNow[count] = e.href;
+    }
+  })
+}
+
+function isInViewport(element) {
+  const rect = element.getBoundingClientRect();
+  return (
+      rect.top >= 0 &&
+      rect.left >= 0 &&
+      rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+  );
 }
