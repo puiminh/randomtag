@@ -44,9 +44,11 @@
       currentTab = sender.tab.index;
                   console.log("Data from send event",sender.tab);
       // getCurrentTab().then((e) => {
+        const moveTo = finder(allTab,currentTab,request.tab);
         console.log("Data before finder: ",allTab,currentTab,request.tab);
-        console.log("Data finder: ",finder(allTab,currentTab,request.tab));
-        chrome.tabs.update(finder(allTab,currentTab,request.tab).id,{selected:true});
+        console.log("Data finder: ",);
+        console.log("move: ",moveTo.id)
+        chrome.tabs.update(moveTo.id,{selected:true});
       // })
         return true;
     }

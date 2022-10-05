@@ -1,28 +1,26 @@
 var fit = false;
+var first_press = false;
 var allTab = [];
 (() => {
   
   document.onkeydown = function(evt){
-    evt = evt || window.event;
-    if(evt.shiftKey){
-    console.log('Shift');
+    // evt = evt || window.event;
+    // if(evt.shiftKey){
+    // console.log('Shift');
     switch (evt.key){
         case 'A':
         case 'a':
-            sendMess({tab: "back"});
-            console.log('sending')
+        case 'ArrowLeft':
+            key_press({tab: "back"});
             break;
         case 'd':
         case 'D':
-            sendMess({tab: "next"});
-            console.log('sending')
+        case 'ArrowRight':
+            key_press({tab: "next"});
             break;
     }
-  }
+  // }
 };
-
-
-
     console.log('contentScript is running...')
 
     window.addEventListener('load', (event) => {
@@ -128,4 +126,20 @@ function defaultFunc(div,img) {
 
 function sendMess(mess) {
   chrome.runtime.sendMessage(mess);
+}
+
+function key_press(mess) {
+  console.log("keypress",first_press);
+  if(first_press) {
+      do_double_press(mess);
+      first_press = false;
+  } else {
+      first_press = true;
+      window.setTimeout(function() { first_press = false; }, 500);
+  }
+}
+
+function do_double_press(mess) {
+  sendMess(mess);
+  console.log('sending');
 }

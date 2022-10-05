@@ -3,18 +3,18 @@
     "version": "1.0.0",
     "description": "Random Tag",
     "permissions": ["storage", "tabs"],
-    "host_permissions": ["https://xem.vn/*","https://chan.sankakucomplex.com/*"],
+    "host_permissions": ["<all_urls>"],
     "background": {
       "service_worker": "background.js"
     },
     "externally_connectable": {
-      "matches": ["https://xem.vn/*","https://chan.sankakucomplex.com/*"]
+      "matches": ["<all_urls>"]
     },
     "manifest_version": 3,
     "author": "Bui Minh",
     "content_scripts": [
         {
-          "matches": ["https://xem.vn/*","https://chan.sankakucomplex.com/*"],
+          "matches": ["<all_urls>"],
           "js": ["contentScript.js"]
         }
       ],
@@ -26,7 +26,7 @@
         {
           "resources": [
           ],
-          "matches": ["https://xem.vn/*","https://chan.sankakucomplex.com/*"]
+          "matches": ["<all_urls>"]
         }
       ],
      "icons": {
