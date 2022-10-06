@@ -38,6 +38,9 @@
 
   chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
+      if (request.open) {
+        chrome.tabs.create({url: request.open, active: false })
+      }
       console.log(sender.tab ?
                   "from a content script:" + sender.tab.url :
                   "from the extension");

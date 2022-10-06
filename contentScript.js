@@ -2,10 +2,9 @@ var fit = false;
 var first_press = false;
 var allTab = [];
 var imgNow = [];
+var scrollPoint  = 0;
 (() => {
-  
   document.onkeydown = function(evt){
-    getAllImgInView();
     // evt = evt || window.event;
     // if(evt.shiftKey){
     // console.log('Shift');
@@ -26,16 +25,70 @@ var imgNow = [];
         case '2':
             newTab(2);
             break;
+        case 'ArrowUp':
+        case 'ArrowDown':
+        default:
+            break;
     }
-
   // }
 };
+document.body.onscroll = function(e) {
+  console.log((window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop))
+  getAllImgInView();
+}
     console.log('contentScript is running...')
 
     window.addEventListener('load', (event) => {
       var styles = `
       ::-webkit-scrollbar  { display: none; }
-  `
+      
+      div[class*='line'] span {
+        -webkit-user-select: none;
+           -moz-user-select: none;
+            -ms-user-select: none;
+                user-select: none;
+        font: 8px arial;
+      }
+      
+      div[class*='line'] {
+        display: flex;
+        justify-content: space-around;
+        position: absolute;
+        bottom: 0;
+      }
+      
+      div[class*='line'] span {
+        box-shadow: 0px 3px 3px rgba(0, 0, 0, .7);
+        color: #71D4FE;
+        padding: 4px;
+        background: #2F3336;
+        border-radius: 3px;
+        text-shadow: 0px 0px 40px #71D4FE, 0px 0px 80px #71D4FE;
+        width: 15px;
+        text-align: center;
+        animation: slidein 0.5s;
+        animation-timing-function: ease;
+      }
+      @keyframes slidein {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+      }
+}
+      
+      div[class*='line'] span:hover {
+        /*   box-shadow: 0px 2px 10px #040404;*/
+        
+        background: #2F3336;
+        text-shadow: 1px 2px 60px #00BCD4, 0px 0px 60px rgba(0, 188, 212, .9), 0px 0px 60px rgba(0, 188, 212, .9), 10px 10px 60px rgba(0, 188, 212, .9);
+        cursor: pointer
+      }
+      
+      div[class*='line'] span:active {
+        transform: scale(.9);
+      }
+
+
+      `
   
   var styleSheet = document.createElement("style")
   styleSheet.innerHTML = styles
@@ -64,9 +117,15 @@ var imgNow = [];
     // chrome.tabs.update(281475921,{selected:true});
 })();
 
-
-
 function addImgView(link){
+
+	// <div>
+	// 	<div class="line">
+	// 		<span>1</span>
+	// 	</div>
+	// </div>
+
+
     const div = document.createElement("div");
     const span = document.createElement("span");
     const text = document.createTextNode("x");
@@ -151,7 +210,8 @@ function key_press(mess) {
 }
 
 function newTab(number) {
-  window.open(imgNow[number]);
+  // window.open(imgNow[number]);
+  chrome.runtime.sendMessage({open: imgNow[number]});
 }
 
 function do_double_press(mess) {
@@ -162,11 +222,14 @@ function getAllImgInView() {
   console.log("running getAllImgInView...")
   let count = 0;
   let list = document.querySelectorAll('.thumb a');
+  resetNumberOnImg();
   return list.forEach((e)=> {
     if(isInViewport(e)){
       count++;
-      console.log(e.href);
+      // console.log(e.href);
       imgNow[count] = e.href;
+      e.parentElement.appendChild(addNumberOnImg(e.href,count));
+      e.parentElement.style.position = 'relative';
     }
   })
 }
@@ -179,4 +242,22 @@ function isInViewport(element) {
       rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
       rect.right <= (window.innerWidth || document.documentElement.clientWidth)
   );
+}
+
+function addNumberOnImg(link, number) {
+  const div = document.createElement("div");
+  const span = document.createElement("span");
+  div.classList.add('line');
+  const text = document.createTextNode(number);
+  span.appendChild(text);
+  div.appendChild(span);
+
+  return div;
+}
+
+function resetNumberOnImg() {
+  let list = document.getElementsByClassName('line');
+  [...list].map((e)=>{
+    e.remove();
+  })
 }
