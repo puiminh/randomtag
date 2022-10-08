@@ -42,7 +42,7 @@ document.body.onscroll = function(e) {
       var styles = `
       ::-webkit-scrollbar  { display: none; }
       
-      div[class*='line'] span {
+      .line span {
         -webkit-user-select: none;
            -moz-user-select: none;
             -ms-user-select: none;
@@ -50,14 +50,14 @@ document.body.onscroll = function(e) {
         font: 8px arial;
       }
       
-      div[class*='line'] {
+      .line {
         display: flex;
         justify-content: space-around;
         position: absolute;
         bottom: 0;
       }
       
-      div[class*='line'] span {
+      .line span {
         box-shadow: 0px 3px 3px rgba(0, 0, 0, .7);
         color: #71D4FE;
         padding: 4px;
@@ -75,7 +75,7 @@ document.body.onscroll = function(e) {
       }
 }
       
-      div[class*='line'] span:hover {
+      .line span:hover {
         /*   box-shadow: 0px 2px 10px #040404;*/
         
         background: #2F3336;
@@ -83,7 +83,7 @@ document.body.onscroll = function(e) {
         cursor: pointer
       }
       
-      div[class*='line'] span:active {
+      .line span:active {
         transform: scale(.9);
       }
 

@@ -37,10 +37,13 @@
         </svg> -->
         <span class="heading-setting"> Setting </span>    
         </div>  
-      <div class="container">
+      <div class="container switch-container">
+        <div class="switch-group-title">
+          <span>Movement</span>
+        </div>
         <div class="switch-holder">
             <div class="switch-label">
-                <i class="fa fa-bluetooth-b"></i><span>Bluetooth</span>
+              <span>Bluetooth</span>
             </div>
             <div class="switch-toggle">
                 <input type="checkbox" id="bluetooth">
@@ -50,7 +53,7 @@
   
         <div class="switch-holder">
             <div class="switch-label">
-                <i class="fa fa-wifi"></i><span>wi-fi</span>
+              <span>wi-fi</span>
             </div>
             <div class="switch-toggle">
                 <input type="checkbox" id="wifi">
@@ -60,14 +63,46 @@
   
         <div class="switch-holder">
             <div class="switch-label">
-                <i class="fa fa-map-marker"></i></i><span>Location</span>
+              <span>Location</span>
             </div>
             <div class="switch-toggle">
                 <input type="checkbox" id="location">
                 <label for="location"></label>
             </div>
         </div>
+
+        <div class="switch-group-title">
+          <span>Movement</span>
+        </div>
+        <div class="switch-holder">
+            <div class="switch-label">
+              <span>Bluetooth</span>
+            </div>
+            <div class="switch-toggle">
+                <input type="checkbox" id="bluetooth2">
+                <label for="bluetooth2"></label>
+            </div>
+        </div>
   
+        <div class="switch-holder">
+            <div class="switch-label">
+              <span>wi-fi</span>
+            </div>
+            <div class="switch-toggle">
+                <input type="checkbox" id="wifi2">
+                <label for="wifi2"></label>
+            </div>
+        </div>
+  
+        <div class="switch-holder">
+            <div class="switch-label">
+              <span>Location</span>
+            </div>
+            <div class="switch-toggle">
+                <input type="checkbox" id="location2">
+                <label for="location2"></label>
+            </div>
+        </div>
     </div>
     </div>
     <div id="content2" class="overlay">
@@ -178,9 +213,11 @@
                                               <a  class="hex-content">
                                                   <span class="hex-content-inner">
                                                       <span class="icon">
-                                                          <i class="fa fa-universal-access"></i>
+                                                        <svg class="custom-logo w-6 h-6" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 413.842 413.842" style="enable-background:new 0 0 413.842 413.842;" xml:space="preserve">
+                                                          <path fill="white" d="M401.395,341.29l-69.568-69.568c-4.731-4.732-12.402-4.732-17.134,0l-7.343,7.343l-28.907-28.908  c20.261-26.247,32.335-59.122,32.335-94.769C310.777,69.707,241.07,0,155.389,0C69.707,0,0,69.707,0,155.388  c0,85.682,69.707,155.389,155.389,155.389c35.646,0,68.521-12.073,94.769-32.335l28.907,28.908l-7.343,7.343  c-4.731,4.731-4.731,12.402,0,17.134l69.569,69.568c16.597,16.597,43.507,16.597,60.104,0  C417.992,384.797,417.992,357.887,401.395,341.29z M155.389,79.34c-41.934,0-76.049,34.115-76.049,76.049c0,11.046-8.954,20-20,20  s-20-8.954-20-20C39.339,91.4,91.399,39.34,155.389,39.34c11.046,0,20,8.954,20,20S166.435,79.34,155.389,79.34z"/>
+                                                         </svg>
                                                       </span>
-                                                      <span class="title">Menu 1</span>
+                                                      <span class="title">Search</span>
                                                   </span>
                                                   <svg viewBox="0 0 173.20508075688772 200" height="200" width="174" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z" fill="#1e2530"></path></svg>
                                               </a>
@@ -197,12 +234,23 @@
                                                   <div></div>
                                               </div>
                                               <a  class="hex-content">
-                                                  <span class="hex-content-inner">
-                                                      <span class="icon">
-                                                          <i class="fa fa-bullseye"></i>
-                                                      </span>
-                                                      <span class="title">Menu 2</span>
+                                                <span class="hex-content-inner">
+                                                  <span class="icon">
+                                                    <svg class="custom-logo w-6 h-6" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                                                      <g>
+                                                        <g>
+                                                          <g>
+                                                            <path fill="white" d="M391.063,307.907c-8.597-8.599-22.553-8.602-31.153,0l-12.46,12.46l-48.126-48.126     C349.52,206.821,344.68,112.87,284.77,52.96c-65.184-65.184-170.688-65.191-235.879,0c-65.184,65.184-65.193,170.688,0,235.879     c59.795,59.795,153.968,64.561,219.27,14.545l48.133,48.133l-12.461,12.461c-8.603,8.603-8.603,22.55,0,31.153l94.761,94.761     c24.048,24.05,63.181,24.05,87.229,0c24.048-24.048,24.048-63.179,0-87.227L391.063,307.907z M228.214,232.286     c-33.845,33.847-88.921,33.848-122.769,0c-33.847-33.847-33.847-88.921,0-122.769c33.848-33.847,88.921-33.845,122.769-0.001     v0.001C262.062,143.364,262.062,198.438,228.214,232.286z"/>
+                                                            <path fill="white" d="M338.711,48.168h151.26c12.166,0,22.029-9.863,22.029-22.029c0-12.166-9.863-22.029-22.029-22.029h-151.26     c-12.166,0-22.029,9.863-22.029,22.029C316.682,38.305,326.546,48.168,338.711,48.168z"/>
+                                                            <path fill="white" d="M489.971,100.18H385.707c-12.166,0-22.029,9.863-22.029,22.029c0,12.166,9.863,22.029,22.029,22.029h104.265     c12.166,0,22.029-9.863,22.029-22.029C512,110.043,502.137,100.18,489.971,100.18z"/>
+                                                            <path fill="white" d="M489.971,196.248H371.021c-12.166,0-22.029,9.863-22.029,22.029c0,12.166,9.863,22.029,22.029,22.029h118.951     c12.166,0,22.029-9.863,22.029-22.029C512,206.112,502.137,196.248,489.971,196.248z"/>
+                                                          </g>
+                                                        </g>
+                                                      </g>
+                                                      </svg>
                                                   </span>
+                                                  <span class="title">Search<span class="bigplus">+</span></span>
+                                              </span>
                                                   <svg viewBox="0 0 173.20508075688772 200" height="200" width="174" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z" fill="#1e2530"></path></svg>
                                               </a>
                                           </div>
@@ -220,9 +268,21 @@
                                             <a  class="hex-content">
                                                 <span class="hex-content-inner">
                                                     <span class="icon">
-                                                        <i class="fa fa-universal-access"></i>
+                                                      <svg class="custom-logo w-6 h-6" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 512 512" enable-background="new 0 0 512 512">
+                                                        <g>
+                                                          <g>
+                                                            <path fill="white" d="m488.1,101.2l-224.6-88.8c-4.8-1.9-10.2-1.9-15-5.32907e-15l-224.6,88.8c-0.1,0-12.4,4.3-12.9,19v287.2c0,8.8 5.7,16.7 14.1,19.4l224.6,73.2c0.3,0.1 3,1 6.3,1 3.5,0 6-0.9 6.3-1l224.6-73.2c8.4-2.7 14.1-10.6 14.1-19.4v-287.2c-0.7-14.7-12.8-19-12.9-19zm-252.5,351.3l-183.8-59.9v-244.3l183.8,59.9v244.3zm20.4-280.6l-164.4-53.6 164.4-65 164.4,65-164.4,53.6zm204.2,220.7l-183.7,59.9v-244.3l183.5-59.8h0.1v244.2z"/>
+                                                            <path fill="white" d="m258.6,102.6h-6.9c-12.4,0-22.4,10-22.4,22.4 0,12.4 10,22.4 22.4,22.4h6.9c12.4,0 22.4-10 22.4-22.4 0-12.4-10-22.4-22.4-22.4z"/>
+                                                            <path fill="white" d="m331.9,292.6c-14.3,0-25.8,11.6-25.8,25.8 0,14.3 11.6,25.8 25.8,25.8 14.3,0 25.8-11.6 25.8-25.8 0.1-14.3-11.5-25.8-25.8-25.8z"/>
+                                                            <path fill="white" d="m404.7,256.5c-14.3,0-25.8,11.6-25.8,25.8 0,14.3 11.6,25.8 25.8,25.8 14.3,0 25.8-11.6 25.8-25.8 0-14.2-11.6-25.8-25.8-25.8z"/>
+                                                            <path fill="white" d="m166.5,283.5c14.3,0 25.8-11.6 25.8-25.8 0-14.3-11.6-25.8-25.8-25.8-14.3,0-25.8,11.6-25.8,25.8 0,14.3 11.5,25.8 25.8,25.8z"/>
+                                                            <path fill="white" d="m104.6,342.7c14.3,0 25.8-11.6 25.8-25.8 0-14.3-11.6-25.8-25.8-25.8-14.3,0-25.8,11.6-25.8,25.8-1.42109e-14,14.2 11.6,25.8 25.8,25.8z"/>
+                                                            <path fill="white" d="m182.8,317.2c-14.3,0-25.8,11.6-25.8,25.8 0,14.3 11.6,25.8 25.8,25.8 14.3,0 25.8-11.6 25.8-25.8-2.84217e-14-14.2-11.5-25.8-25.8-25.8z"/>
+                                                          </g>
+                                                        </g>
+                                                      </svg>
                                                     </span>
-                                                    <span class="title">Menu 3</span>
+                                                    <span class="title">Random</span>
                                                 </span>
                                                 <svg viewBox="0 0 173.20508075688772 200" height="200" width="174" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z" fill="#1e2530"></path></svg>
                                             </a>
@@ -241,9 +301,13 @@
                                             <a  class="hex-content">
                                                 <span class="hex-content-inner">
                                                     <span class="icon">
-                                                        <i class="fa fa-bullseye"></i>
+                                                      <svg class="custom-logo w-6 h-6" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="55.342px" height="55.342px" viewBox="0 0 45.342 45.342" style="enable-background:new 0 0 45.342 45.342;" xml:space="preserve">
+                                                        <g>
+                                                          <path fill="white" d="M40.462,19.193H39.13v-1.872c0-3.021-2.476-5.458-5.496-5.458h-8.975v-4.49c1.18-0.683,1.973-1.959,1.973-3.423   c0-2.182-1.771-3.95-3.951-3.95c-2.183,0-3.963,1.769-3.963,3.95c0,1.464,0.785,2.74,1.965,3.423v4.49h-8.961   c-3.021,0-5.448,2.437-5.448,5.458v1.872H4.893c-1.701,0-3.091,1.407-3.091,3.108v6.653c0,1.7,1.39,3.095,3.091,3.095h1.381v1.887   c0,3.021,2.427,5.442,5.448,5.442h2.564v2.884c0,1.701,1.393,3.08,3.094,3.08h10.596c1.701,0,3.08-1.379,3.08-3.08v-2.883h2.578   c3.021,0,5.496-2.422,5.496-5.443V32.05h1.332c1.701,0,3.078-1.394,3.078-3.095v-6.653C43.54,20.601,42.165,19.193,40.462,19.193z    M10.681,21.271c0-1.999,1.621-3.618,3.619-3.618c1.998,0,3.617,1.619,3.617,3.618c0,1.999-1.619,3.618-3.617,3.618   C12.302,24.889,10.681,23.27,10.681,21.271z M27.606,34.473H17.75c-1.633,0-2.957-1.316-2.957-2.951   c0-1.633,1.324-2.949,2.957-2.949h9.857c1.633,0,2.957,1.316,2.957,2.949S29.239,34.473,27.606,34.473z M31.056,24.889   c-1.998,0-3.618-1.619-3.618-3.618c0-1.999,1.62-3.618,3.618-3.618c1.999,0,3.619,1.619,3.619,3.618   C34.675,23.27,33.055,24.889,31.056,24.889z"/>
+                                                        </g>
+                                                        </svg>
                                                     </span>
-                                                    <span class="title">Menu 4</span>
+                                                    <span class="title">Recommend</span>
                                                 </span>
                                                 <svg viewBox="0 0 173.20508075688772 200" height="200" width="174" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z" fill="#1e2530"></path></svg>
                                             </a>
@@ -262,9 +326,13 @@
                                             <a  class="hex-content">
                                                 <span class="hex-content-inner">
                                                     <span class="icon">
-                                                        <i class="fa fa-universal-access"></i>
+                                                      <svg height="55px" class="custom-logo w-6 h-6" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 489.4 489.4" style="enable-background:new 0 0 489.4 489.4;" xml:space="preserve">
+                                                          <g>
+                                                            <path fill="white" d="M461.6,89.6H27.8C12.5,89.6,0,102,0,117.4V372c0,15.3,12.4,27.8,27.8,27.8h433.8c15.3,0,27.8-12.4,27.8-27.8V117.4    C489.3,102,476.9,89.6,461.6,89.6z M305.9,148c0-3.8,3.1-6.9,6.9-6.9h28.3c3.8,0,6.9,3.1,6.9,6.9v27.8c0,3.8-3.1,6.9-6.9,6.9    h-28.3c-3.8,0-6.9-3.1-6.9-6.9V148z M271.5,223.5h28.3c3.8,0,6.9,3.1,6.9,6.9v27.8c0,3.8-3.1,6.9-6.9,6.9h-28.3    c-3.8,0-6.9-3.1-6.9-6.9v-27.8C264.6,226.6,267.7,223.5,271.5,223.5z M223.7,148c0-3.8,3.1-6.9,6.9-6.9h28.3    c3.8,0,6.9,3.1,6.9,6.9v27.8c0,3.8-3.1,6.9-6.9,6.9h-28.3c-3.8,0-6.9-3.1-6.9-6.9L223.7,148L223.7,148z M189.2,223.5h28.3    c3.8,0,6.9,3.1,6.9,6.9v27.8c0,3.8-3.1,6.9-6.9,6.9h-28.3c-3.8,0-6.9-3.1-6.9-6.9v-27.8C182.3,226.6,185.4,223.5,189.2,223.5z     M141.4,148c0-3.8,3.1-6.9,6.9-6.9h28.3c3.8,0,6.9,3.1,6.9,6.9v27.8c0,3.8-3.1,6.9-6.9,6.9h-28.3c-3.8,0-6.9-3.1-6.9-6.9V148z     M58.7,148c0-3.8,3.1-6.9,6.9-6.9h28.3c3.8,0,6.9,3.1,6.9,6.9v27.8c0,3.8-3.1,6.9-6.9,6.9H65.6c-3.8,0-6.9-3.1-6.9-6.9V148z     M100.8,341.4c0,3.8-3.1,6.9-6.9,6.9H65.6c-3.8,0-6.9-3.1-6.9-6.9v-27.8c0-3.8,3.1-6.9,6.9-6.9h28.3c3.8,0,6.9,3.1,6.9,6.9V341.4z     M134.8,265.1h-28.3c-3.8,0-6.9-3.1-6.9-6.9v-27.8c0-3.8,3.1-6.9,6.9-6.9h28.3c3.8,0,6.9,3.1,6.9,6.9v27.8    C141.7,262,138.6,265.1,134.8,265.1z M348,341.4c0,3.8-3.1,6.9-6.9,6.9h-8.5h-19.7H259h-28.3h-82.3c-3.8,0-6.9-3.1-6.9-6.9v-27.8    c0-3.8,3.1-6.9,6.9-6.9h82.3H259h53.9h19.7h8.5c3.8,0,6.9,3.1,6.9,6.9V341.4z M382,265.1h-28.3c-3.8,0-6.9-3.1-6.9-6.9v-27.8    c0-3.8,3.1-6.9,6.9-6.9H382c3.8,0,6.9,3.1,6.9,6.9v27.8C388.9,262,385.8,265.1,382,265.1z M430.7,341.4c0,3.8-3.1,6.9-6.9,6.9    h-28.3c-3.8,0-6.9-3.1-6.9-6.9v-27.8c0-3.8,3.1-6.9,6.9-6.9h28.3c3.8,0,6.9,3.1,6.9,6.9V341.4z M430.7,175.8    c0,3.8-3.1,6.9-6.9,6.9h-28.3c-3.8,0-6.9-3.1-6.9-6.9V148c0-3.8,3.1-6.9,6.9-6.9h28.3c3.8,0,6.9,3.1,6.9,6.9V175.8z"/>
+                                                          </g>
+                                                        </svg>
                                                     </span>
-                                                    <span class="title">Menu 5</span>
+                                                    <span class="title">Keybroad</span>
                                                 </span>
                                                 <svg viewBox="0 0 173.20508075688772 200" height="200" width="174" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z" fill="#1e2530"></path></svg>
                                             </a>
@@ -283,11 +351,13 @@
                                             <a  class="hex-content">
                                                 <span class="hex-content-inner">
                                                     <span class="icon">
-                                                        <i class="fa fa-bullseye"></i>
+                                                        <!-- <i class="fa fa-bullseye"></i> -->
+                                                        <svg class="custom-logo w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                                                     </span>
-                                                    <span class="title">Menu 6</span>
+                                                    <span class="title">Setting</span>
                                                 </span>
                                                 <svg viewBox="0 0 173.20508075688772 200" height="200" width="174" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z" fill="#1e2530"></path></svg>
+                                                
                                             </a>
                                         </div>
                                         <div id="menuButton7" class="hexagon-item">
@@ -303,10 +373,10 @@
                                             </div>
                                             <a  class="hex-content">
                                                 <span class="hex-content-inner">
-                                                    <span class="icon">
-                                                        <i class="fa fa-bullseye"></i>
-                                                    </span>
-                                                    <span class="title">Menu 7</span>
+                                                    <svg class="custom-logo w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                      <path fill-rule="evenodd" clip-rule="evenodd" d="M4 5.5H9C10.1046 5.5 11 6.39543 11 7.5V16.5C11 17.0523 10.5523 17.5 10 17.5H4C3.44772 17.5 3 17.0523 3 16.5V6.5C3 5.94772 3.44772 5.5 4 5.5ZM14 19.5C13.6494 19.5 13.3128 19.4398 13 19.3293V19.5C13 20.0523 12.5523 20.5 12 20.5C11.4477 20.5 11 20.0523 11 19.5V19.3293C10.6872 19.4398 10.3506 19.5 10 19.5H4C2.34315 19.5 1 18.1569 1 16.5V6.5C1 4.84315 2.34315 3.5 4 3.5H9C10.1947 3.5 11.2671 4.02376 12 4.85418C12.7329 4.02376 13.8053 3.5 15 3.5H20C21.6569 3.5 23 4.84315 23 6.5V16.5C23 18.1569 21.6569 19.5 20 19.5H14ZM13 7.5V16.5C13 17.0523 13.4477 17.5 14 17.5H20C20.5523 17.5 21 17.0523 21 16.5V6.5C21 5.94772 20.5523 5.5 20 5.5H15C13.8954 5.5 13 6.39543 13 7.5ZM5 7.5H9V9.5H5V7.5ZM15 7.5H19V9.5H15V7.5ZM19 10.5H15V12.5H19V10.5ZM5 10.5H9V12.5H5V10.5ZM19 13.5H15V15.5H19V13.5ZM5 13.5H9V15.5H5V13.5Z" fill="white"/>
+                                                    </svg>                                                    
+                                                    <span class="title">Readme</span>
                                                 </span>
                                                 <svg viewBox="0 0 173.20508075688772 200" height="200" width="174" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z" fill="#1e2530"></path></svg>
                                             </a>
@@ -319,37 +389,17 @@
                           
                       </div>
                   </div>
+                  <div class="line">
+                    <div class="group-key-mean">
+                      <span class="keycap">A</span>
+                      <span class="meaning">Back</span>
+                    </div>
+                    <div class="group-key-mean">
+                      <span class="keycap">A</span>
+                      <span class="meaning">Back</span>
+                    </div>
+                  </div>
         </main>
-    <div class="wrapper visually-hidden">
-      <header>Quote of the Day</header>
-      <div class="content">
-        <div class="quote-area">
-          <i class="fas fa-quote-left"></i>
-          <p class="quote">Never give up because you never know if the next try is going to be the one that works.</p>
-          <i class="fas fa-quote-right"></i>
-        </div>
-        <div class="author">
-          <span>__</span>
-          <span class="name">Mary Kay Ash</span>
-        </div>
-      </div>
-      <div class="buttons">
-        <div class="features">
-          <ul>
-            <li class="speech"><i class="fas fa-volume-up"></i></li>
-            <li class="copy"><i class="fas fa-copy"></i></li>
-            <li class="twitter"><i class="fab fa-twitter"></i></li>
-          </ul>
-          <button>New Quote</button>
-        </div>
-      </div>
-      <div class="loading">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4335 4335" width="100" height="100">
-          <path fill="#008DD2" d="M3346 1077c41,0 75,34 75,75 0,41 -34,75 -75,75 -41,0 -75,-34 -75,-75 0,-41 34,-75 75,-75zm-1198 -824c193,0 349,156 349,349 0,193 -156,349 -349,349 -193,0 -349,-156 -349,-349 0,-193 156,-349 349,-349zm-1116 546c151,0 274,123 274,274 0,151 -123,274 -274,274 -151,0 -274,-123 -274,-274 0,-151 123,-274 274,-274zm-500 1189c134,0 243,109 243,243 0,134 -109,243 -243,243 -134,0 -243,-109 -243,-243 0,-134 109,-243 243,-243zm500 1223c121,0 218,98 218,218 0,121 -98,218 -218,218 -121,0 -218,-98 -218,-218 0,-121 98,-218 218,-218zm1116 434c110,0 200,89 200,200 0,110 -89,200 -200,200 -110,0 -200,-89 -200,-200 0,-110 89,-200 200,-200zm1145 -434c81,0 147,66 147,147 0,81 -66,147 -147,147 -81,0 -147,-66 -147,-147 0,-81 66,-147 147,-147zm459 -1098c65,0 119,53 119,119 0,65 -53,119 -119,119 -65,0 -119,-53 -119,-119 0,-65 53,-119 119,-119z"
-          />
-        </svg>
-      </div>
-    </div>
     <script src="/axios.min.js"></script>
     <script src="/bootstrap.bundle.min.js"></script>
 <script src="datedropper.css"></script>
