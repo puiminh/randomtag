@@ -1019,10 +1019,12 @@ margin: auto
   list-style: none;
   padding: 8px 12px;
   display: none;
-  width: 100%;
+  max-width: 300px;
   cursor: default;
   border-bottom: 2px solid #ff0037;
   background-color: #0c0f15;
+  font-size: 15px;
+  overflow: hidden;
 }
 
 .active .autocom-box li{
@@ -1342,6 +1344,11 @@ margin: auto
   margin-top: 6px;
 }
 
+.enter-tag-list-button {
+  right: 15px;
+  margin-top: 6px;
+}
+
 /* tag */
 
 .link-tag-wrapper {
@@ -1562,4 +1569,8 @@ svg {
     }
     .meaning {
       font-size: 12px;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+       -ms-user-select: none;
+           user-select: none;
     }

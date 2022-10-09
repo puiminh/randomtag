@@ -11,12 +11,19 @@ async function getCurrentTab() {
       currentTab: currentTab,
     };
 }
-getCurrentTab().then((e) => {
-    console.log("run 1",e);
-    chrome.tabs.sendMessage(e.currentTab.id, e);
-    // chrome.tabs.update(281475921,{selected:true})
-  })
 
 document.querySelector('#menuButton7').addEventListener('click', ()=> {
   window.close();
 })
+
+async function saveConfig(config) {
+  const {configName, configValue} = config;
+
+  await chrome.storage.local.set(config, function() {
+    console.log('Value is set to ', config);
+  });
+}
+
+async function getConfig(configName) {
+  return await chrome.storage.local.get([configName]);
+}

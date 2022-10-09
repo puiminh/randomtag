@@ -102,17 +102,15 @@ document.body.onscroll = function(e) {
 
       });
     
-    chrome.runtime.onMessage.addListener((obj, sender, response) => {
-            const {type, id } = obj;
-            console.log(obj);
-            allTab = obj.allTab;
-            console.log(allTab);
-            // if (type === "NEW") {
-            //   console.log("NEW: ",id);
-            // } else {
-            //   console.log("not thing");
-            // }
-          });     
+      chrome.runtime.onMessage.addListener(
+        function(request, sender, sendResponse) {
+            if( request.mess === "changeConfig" ) {
+                console.log(request);
+                localStorage.setItem(request.configName, request.configValue);
+                sendResponse({res: localStorage.getItem(request.configName)});
+            }
+        }
+    ); 
     console.log("makesure");
     // chrome.tabs.update(281475921,{selected:true});
 })();

@@ -32,9 +32,6 @@
     </div> -->
     <div id="content1" class="overlay">
       <div class="page-title home text-center pt-3 pb-3 page-title-setting">
-        <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
-          <path fill-rule="evenodd" d="M18 10a.75.75 0 01-.75.75H4.66l2.1 1.95a.75.75 0 11-1.02 1.1l-3.5-3.25a.75.75 0 010-1.1l3.5-3.25a.75.75 0 111.02 1.1l-2.1 1.95h12.59A.75.75 0 0118 10z" clip-rule="evenodd" />
-        </svg> -->
         <span class="heading-setting"> Setting </span>    
         </div>  
       <div class="container switch-container">
@@ -147,6 +144,45 @@
     <div id="content7" class="overlay">
       <h1>content 7</h1>
     </div>
+    <div id="content8" class="overlay">
+        <div class="page-title home text-center pt-3 pb-3 page-title-setting">
+          <span class="heading-setting"> Serect Setting </span>    
+        </div>  
+        <div class="container switch-container">
+            <div class="switch-group-title">
+                <span>Hide Ads</span>
+            </div>
+            <div class="switch-holder">
+                <div class="switch-label">
+                    <span>Logo&Header</span>
+                </div>
+                <div class="switch-toggle">
+                    <input type="checkbox" id="sankakuLogonHeaderHideButton"/>
+                    <label for="sankakuLogonHeaderHideButton"></label>
+                </div>
+            </div>
+
+            <div class="switch-holder">
+                <div class="switch-label">
+                    <span>wi-fi</span>
+                </div>
+                <div class="switch-toggle">
+                    <input type="checkbox" id="wifi"/>
+                    <label for="wifi"></label>
+                </div>
+            </div>
+
+            <div class="switch-holder">
+                <div class="switch-label">
+                    <span>Location</span>
+                </div>
+                <div class="switch-toggle">
+                    <input type="checkbox" id="location"/>
+                    <label for="location"></label>
+                </div>
+            </div>
+        </div>
+    </div>
     
     <main class="site-wrapper">
         <p class="hello-user">Hello, <span id="user-name" class="user-name"  contenteditable="true">minhb3o</span></p>
@@ -182,6 +218,14 @@
                             <div class="link-tag-wrapper">
                               <!-- <a class="button tag tag-angular"  href="#"><span class="">female</span></a> -->
 
+                            </div>
+                            <div class="close enter-tag-list-button">
+                              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Uploaded to svgrepo.com" x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32" style="enable-background:new 0 0 32 32;" xml:space="preserve">
+                                <style type="text/css">
+                                  .afiado_een{fill:#0B1719;}
+                                </style>
+                                <path class="afiado_een" d="M27.728,16.024l-8.485,8.482l-2.828-2.835L20.071,18H6v-4h14.071l-3.657-3.644l2.828-2.816  L27.728,16.024z"/>
+                                </svg>
                             </div>
 
                           </div>
@@ -399,13 +443,15 @@
                       <span class="meaning">Back</span>
                     </div>
                   </div>
+                  <!-- <my-counter id="counter" count="10"></my-counter> -->
         </main>
+    <!-- <script src="./counter.js"></script> -->
+    <script src="/script.js"></script>
     <script src="/axios.min.js"></script>
     <script src="/bootstrap.bundle.min.js"></script>
-<script src="datedropper.css"></script>
-
+    <script src="datedropper.css"></script>
+    <script src="/hideads.js">    </script>
     <script src="/datatables.min.js"></script>
-    <script src="/script.js"></script>
     <script src="/suggestions.js"></script>
     <script src="/excelfetch.js"></script>
     <script src="/username.js"></script>

@@ -8,33 +8,45 @@ const closeButton = document.querySelector(".clear-tag-list-button")
 const linkTag = searchWrapper.querySelector("a");
 let webLink;
 let tagList = [];
+let tagListText = [];
 
 let o = 0; // iterate over children elements inside dropdown
 // if user press any key and release
 inputBox.onkeyup = (e)=>{
-    console.log("running")
     let userData = e.target.value; //user enetered data
     let emptyElements = [];
     let emptySearch = [];
     if(userData){
         icon.onclick = ()=>{
-            webLink = `https://www.google.com/search?q=${userData}`;
+            let searchTag = tagListText.join('+');
+            webLink = `https://chan.sankakucomplex.com/?tags=${searchTag}&commit=Search`;
             linkTag.setAttribute("href", webLink);
             linkTag.click();
         }
         
-
-        emptySearch = bigData.filter((data)=>{
-            //filtering array value and user characters to lowercase and return only those words which are start with user enetered chars
-              return ((data.name+'')?.toLocaleLowerCase().search(userData.toLocaleLowerCase()) != -1)
-        });
-
+        let count = 0;
+        for (let data of bigData) {
+          if (count > 50) {
+            break;
+          } else {
+            if ((data.name+'')?.toLocaleLowerCase().search(userData.toLocaleLowerCase()) != -1) { 
+              count++;
+              console.log("founded: ",data)
+              emptySearch.push(data); 
+            }
+          }
+        }
+        // emptySearch = bigData.filter((data)=>{
+        //     //filtering array value and user characters to lowercase and return only those words which are start with user enetered chars
+        //       return ((data.name+'')?.toLocaleLowerCase().search(userData.toLocaleLowerCase()) != -1)
+        // });
         // fetchByExcel(userData).then(() => {
-          emptyElements = emptySearch.map((data)=>{ //emtySearch
+          console.log("emtySearch: ",emptySearch)  
+        emptyElements = emptySearch.map((data)=>{ //emtySearch
               // passing return data inside li tag
               return data = `<li>${data.name}</li>`;
           });
-          console.log("allData vs searchData",userData,bigData,emptyElements)
+          console.log("userData vs searchData",userData,emptyElements)
 
           searchWrapper.classList.add("active"); //show autocomplete box
           showSuggestions(emptyElements);
@@ -52,7 +64,7 @@ inputBox.onkeyup = (e)=>{
     }
     const dropdown = document.querySelector(".autocom-box");
     const childs = dropdown.children; // get all dropdown elements
-    console.log("all dropdown: ", childs);
+    // console.log("all dropdown: ", childs);
     // attach keyboard events
 
 
@@ -105,13 +117,9 @@ function select(element){
     if(!element) return;
     let selectData = element.textContent;
     inputBox.value = selectData;
-    icon.onclick = ()=>{
-        webLink = `https://www.google.com/search?q=${selectData}`;
-        linkTag.setAttribute("href", webLink);
-        linkTag.click();
-    }
     searchWrapper.classList.remove("active");
-    tagList.push(`<a class="button tag tag-angular"  href="#"><span class="">${element.textContent}</span></a>`);
+    tagList.push(`<a class="button tag tag-angular" target="_blank" href="https://chan.sankakucomplex.com/?tags=${selectData}&commit=Search"><span class="">${element.textContent}</span></a>`);
+    tagListText.push(element.textContent);
     showTagList(tagList);
 }
 

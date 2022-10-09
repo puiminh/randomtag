@@ -30,6 +30,22 @@
 
 var i;
 
+
+document.onkeydown = function(evt){
+    // evt = evt || window.event;
+    // if(evt.shiftKey){
+    // console.log('Shift');
+    switch (evt.key){
+        case '8':
+            document.getElementById("content8").classList.toggle("show");
+            break;
+        default:
+            break;
+    }
+  // }
+};
+
+
 var menuButton1 = document.getElementById("menuButton1");
 menuButton1.addEventListener("click", function(){
     document.getElementById("content1").classList.toggle("show");

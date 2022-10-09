@@ -7,7 +7,7 @@ async function fetchByExcel(searchKey = '') {
             if(result.tags?.length>2) {
                 justFetched = true;
                 console.log('data already fetched'+result.tags);
-                bigData = result.tags;
+                bigData = JSON.parse(result.tags);
                 return result.tags;
             } else {
                 console.log('now start fetch');
