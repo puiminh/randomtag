@@ -749,6 +749,12 @@ footer a {
       -ms-transform: scale(0.97);
       -o-transform: scale(0.97);
       transform: scale(0.97); }
+      .hexagon-item:hover .img-logo {
+        -webkit-transform: scale(1.5);
+        -moz-transform: scale(1.5);
+        -ms-transform: scale(1.5);
+        -o-transform: scale(1.5);
+        transform: scale(1.5); }
 
 .page-home .hexagon-item:nth-last-child(1),
 .page-home .hexagon-item:nth-last-child(2),

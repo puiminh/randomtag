@@ -19,12 +19,26 @@ var scrollPoint  = 0;
         case 'ArrowRight':
             key_press({tab: "next"});
             break;
-        case '1':
-            newTab(1);
-            break;
-        case '2':
-            newTab(2);
-            break;
+        case '1' : newTab(1);
+        break;
+        case '2' : newTab(2);
+        break;
+        case '3' : newTab(3);
+        break;
+        case '4' : newTab(4);
+        break;
+        case '5' : newTab(5);
+        break;
+        case '6' : newTab(6);
+        break;
+        case '7' : newTab(7);
+        break;
+        case '8' : newTab(8);
+        break;
+        case '9' : newTab(9);
+        break;
+        case '0' : newTab(0);
+        break;
         case 'ArrowUp':
         case 'ArrowDown':
         default:
@@ -38,61 +52,87 @@ document.body.onscroll = function(e) {
 }
     console.log('contentScript is running...')
 
-    window.addEventListener('load', (event) => {
-      var styles = `
-      ::-webkit-scrollbar  { display: none; }
-      
-      .line span {
-        -webkit-user-select: none;
-           -moz-user-select: none;
-            -ms-user-select: none;
-                user-select: none;
-        font: 8px arial;
-      }
-      
-      .line {
-        display: flex;
-        justify-content: space-around;
-        position: absolute;
-        bottom: 0;
-      }
-      
-      .line span {
-        box-shadow: 0px 3px 3px rgba(0, 0, 0, .7);
-        color: #71D4FE;
-        padding: 4px;
-        background: #2F3336;
-        border-radius: 3px;
-        text-shadow: 0px 0px 40px #71D4FE, 0px 0px 80px #71D4FE;
-        width: 15px;
-        text-align: center;
-        animation: slidein 0.5s;
-        animation-timing-function: ease;
-      }
-      @keyframes slidein {
-        0% { opacity: 0; }
-        100% { opacity: 1; }
-      }
+    let sankakuLogonHeaderHideButton = localStorage.getItem('sankakuLogonHeaderHideButton');
+    let sankakuPreniumHideButton = localStorage.getItem('sankakuPreniumHideButton');
+    let sankakuHideAdsButton = localStorage.getItem('sankakuHideAdsButton')
+    let sankakuRecommendSeries = localStorage.getItem('sankakuRecommendSeries')
+    var styles = `
+    ::-webkit-scrollbar  { display: none; }
+    
+    #headerlogo {
+      display: ${sankakuLogonHeaderHideButton}
+    }
+
+    #news-ticker {
+      display: ${sankakuPreniumHideButton}
+    }
+
+    .scad-i {
+      display: ${sankakuHideAdsButton}
+    }
+
+    .has-mail {
+      display: ${sankakuRecommendSeries}
+    }
+
+    .blacklisted {
+      display: none!important;
+    }
+
+    .line span {
+      -webkit-user-select: none;
+         -moz-user-select: none;
+          -ms-user-select: none;
+              user-select: none;
+      font: 8px arial;
+    }
+    
+    .line {
+      display: flex;
+      justify-content: space-around;
+      position: absolute;
+      bottom: 0;
+    }
+    
+    .line span {
+      box-shadow: 0px 3px 3px rgba(0, 0, 0, .7);
+      color: #71D4FE;
+      padding: 4px;
+      background: #2F3336;
+      border-radius: 3px;
+      text-shadow: 0px 0px 40px #71D4FE, 0px 0px 80px #71D4FE;
+      width: 15px;
+      text-align: center;
+      animation: slidein 0.5s;
+      animation-timing-function: ease;
+    }
+    @keyframes slidein {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
 }
+    
+    .line span:hover {
+      /*   box-shadow: 0px 2px 10px #040404;*/
       
-      .line span:hover {
-        /*   box-shadow: 0px 2px 10px #040404;*/
-        
-        background: #2F3336;
-        text-shadow: 1px 2px 60px #00BCD4, 0px 0px 60px rgba(0, 188, 212, .9), 0px 0px 60px rgba(0, 188, 212, .9), 10px 10px 60px rgba(0, 188, 212, .9);
-        cursor: pointer
-      }
-      
-      .line span:active {
-        transform: scale(.9);
-      }
+      background: #2F3336;
+      text-shadow: 1px 2px 60px #00BCD4, 0px 0px 60px rgba(0, 188, 212, .9), 0px 0px 60px rgba(0, 188, 212, .9), 10px 10px 60px rgba(0, 188, 212, .9);
+      cursor: pointer
+    }
+    
+    .line span:active {
+      transform: scale(.9);
+    }
 
 
-      `
-  
-  var styleSheet = document.createElement("style")
-  styleSheet.innerHTML = styles
-  document.head.appendChild(styleSheet);
+    `
+
+var styleSheet = document.createElement("style")
+styleSheet.innerHTML = styles
+document.head.appendChild(styleSheet);
+
+
+    window.addEventListener('load', (event) => {
 
         console.log('page is fully loaded');
         // console.log(document.querySelector(".photoImg img").src);
@@ -107,7 +147,7 @@ document.body.onscroll = function(e) {
             if( request.mess === "changeConfig" ) {
                 console.log(request);
                 localStorage.setItem(request.configName, request.configValue);
-                sendResponse({res: localStorage.getItem(request.configName)});
+                sendResponse({configName: localStorage.getItem(request.configName)});
             }
         }
     ); 
@@ -209,7 +249,8 @@ function key_press(mess) {
 
 function newTab(number) {
   // window.open(imgNow[number]);
-  chrome.runtime.sendMessage({open: imgNow[number]});
+  let id = ((number==0) ? 10 : number);
+  chrome.runtime.sendMessage({open: imgNow[id]});
 }
 
 function do_double_press(mess) {
@@ -219,17 +260,19 @@ function do_double_press(mess) {
 function getAllImgInView() {
   console.log("running getAllImgInView...")
   let count = 0;
-  let list = document.querySelectorAll('.thumb a');
+  let list = document.querySelectorAll('.thumb:not(.blacklisted) a');
   resetNumberOnImg();
-  return list.forEach((e)=> {
+
+  for (const e of list) {
+    if (count>10) break;
     if(isInViewport(e)){
       count++;
       // console.log(e.href);
       imgNow[count] = e.href;
       e.parentElement.appendChild(addNumberOnImg(e.href,count));
       e.parentElement.style.position = 'relative';
-    }
-  })
+    } 
+  }
 }
 
 function isInViewport(element) {
@@ -246,7 +289,8 @@ function addNumberOnImg(link, number) {
   const div = document.createElement("div");
   const span = document.createElement("span");
   div.classList.add('line');
-  const text = document.createTextNode(number);
+  let id = ((number==10) ? 0 : number);
+  const text = document.createTextNode(id);
   span.appendChild(text);
   div.appendChild(span);
 

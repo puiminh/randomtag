@@ -24,7 +24,7 @@
     },
      "web_accessible_resources": [
         {
-          "resources": [
+          "resources": ["logo.png"
           ],
           "matches": ["<all_urls>"]
         }

@@ -36,7 +36,22 @@ document.onkeydown = function(evt){
     // if(evt.shiftKey){
     // console.log('Shift');
     switch (evt.key){
-        case '8':
+        case '1':
+            function1();
+            break;
+        case '2':
+            break;
+        case '3':
+            break;
+        case '4':
+            break;
+        case '5':
+            break;
+        case '6':
+            break;
+        case '7':
+            break;
+        case '0':
             document.getElementById("content8").classList.toggle("show");
             break;
         default:
@@ -48,7 +63,8 @@ document.onkeydown = function(evt){
 
 var menuButton1 = document.getElementById("menuButton1");
 menuButton1.addEventListener("click", function(){
-    document.getElementById("content1").classList.toggle("show");
+    function1();
+    // document.getElementById("content1").classList.toggle("show");
 })
 var menuButton2 = document.getElementById("menuButton2");
 menuButton2.addEventListener("click", function(){
@@ -88,4 +104,8 @@ for (i = 0; i < headerSetting.length; i++) {
         console.log("click");
         closeAll();
 });
+}
+
+function function1() {
+    window.open("https://chan.sankakucomplex.com/", "_blank");
 }
