@@ -22,3 +22,20 @@ document.querySelector('#menuButton4').addEventListener("click", function(event)
   // 
 });
 // loadingFunc(); 
+
+async function waitUntil() {
+  let counter=0, c = 0;
+  return await new Promise(resolve => {
+    const interval = setInterval(() => {
+        counter++;
+        c = Math.floor(Math.random() * 40)
+        console.log("c - counter:",c,counter);
+      if (counter > 10) {
+        resolve(c);
+        clearInterval(interval);
+      };
+    }, 50);
+  });
+}
+
+// tooltip: https://codepen.io/roydigerhund/pen/gPyzEa/
