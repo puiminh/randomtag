@@ -69,6 +69,8 @@ menuButton1.addEventListener("click", function(){
 var menuButton2 = document.getElementById("menuButton2");
 menuButton2.addEventListener("click", function(){
     document.getElementById("content2").classList.toggle("show");
+    document.getElementById("hexagon-menu").classList.toggle("hide");
+
 })
 var menuButton3 = document.getElementById("menuButton3");
 menuButton3.addEventListener("click", function(){
