@@ -1392,7 +1392,7 @@ svg {
       position: absolute;
       font-size: 10px;
       top: 0;
-      right: -10px;
+      right: 0px;
     }
     
     .group-key-mean {

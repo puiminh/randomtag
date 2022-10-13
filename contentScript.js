@@ -3,20 +3,24 @@ var first_press = false;
 var allTab = [];
 var imgNow = [];
 var scrollPoint  = 0;
+var input = document.querySelector('#tags');
 (() => {
   document.onkeydown = function(evt){
     // evt = evt || window.event;
     // if(evt.shiftKey){
     // console.log('Shift');
-    switch (evt.key){
-        case 'A':
-        case 'a':
-        case 'ArrowLeft':
+    if (document.activeElement != input) {
+      switch (evt.key){
+        // case 'A':
+        // case 'a':
+        // case 'ArrowLeft':
+        case ',':
             key_press({tab: "back"});
             break;
-        case 'd':
-        case 'D':
-        case 'ArrowRight':
+        // case 'd':
+        // case 'D':
+        // case 'ArrowRight':
+        case '.':
             key_press({tab: "next"});
             break;
         case '1' : newTab(1);
@@ -44,6 +48,8 @@ var scrollPoint  = 0;
         default:
             break;
     }
+    }
+
   // }
 };
 document.body.onscroll = function(e) {
@@ -133,7 +139,6 @@ document.head.appendChild(styleSheet);
 
 
     window.addEventListener('load', (event) => {
-
         console.log('page is fully loaded');
         // console.log(document.querySelector(".photoImg img").src);
         if (document.querySelector("#post-content img")) addImgView(document.querySelector("#post-content img").src);
@@ -247,16 +252,18 @@ function key_press(mess) {
   }
 }
 
+function do_double_press(mess) {
+  sendMess(mess);
+  console.log('sending');
+}
+
 function newTab(number) {
   // window.open(imgNow[number]);
   let id = ((number==0) ? 10 : number);
   chrome.runtime.sendMessage({open: imgNow[id]});
 }
 
-function do_double_press(mess) {
-  sendMess(mess);
-  console.log('sending');
-}
+
 function getAllImgInView() {
   console.log("running getAllImgInView...")
   let count = 0;

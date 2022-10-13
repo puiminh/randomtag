@@ -13,6 +13,8 @@ let tagListText = [];
 
 let o = 0; // iterate over children elements inside dropdown
 // if user press any key and release
+
+
 inputBox.onkeyup = (e)=>{
     let userData = e.target.value; //user enetered data
     let emptyElements = [];

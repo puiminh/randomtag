@@ -28,73 +28,139 @@
 //     });
 //   }
 var APP_MODE = 0;
+var input_focus = false;
+var last_press = null;
+var now_press = null;
 var i;
 const hexagon = document.getElementById("hexagon-menu");
 const apptitle = document.getElementById("app-title");
+
+inputBox.onfocus = (() => {
+    input_focus = true;
+    console.log(input_focus);
+  })
+  
+  inputBox.onblur = (() => {
+    input_focus = false;
+    console.log(input_focus);
+  
+  })
 
 document.onkeydown = function(evt){
     // evt = evt || window.event;
     // if(evt.shiftKey){
     // console.log('Shift');
-    switch (APP_MODE) {
-        // Default
-        case 0:
-            switch (evt.key){
-                case '1':
-                    openSankaku();
-                    break;
-                case '2':
-                    openSearchPlus();
-                    break;
-                case '3':
-                    break;
-                case '4':
-                    break;
-                case '5':
-                    break;
-                case '6':
-                    break;
-                case '7':
-                    break;
-                case '0':
-                    document.getElementById("content8").classList.toggle("show");
-                    break;
-                default:
-                    break;
-            }            
-            break;
-        
-        // Search Plus
-        case 2:
-            switch (evt.key){
-                case '1':
-                    console.log(evt.key);
-                    break;
-                case '2':
-                    break;
-                case '3':
-                    break;
-                case '4':
-                    break;
-                case '5':
-                    break;
-                case '6':
-                    break;
-                case '7':
-                    break;
-                case '0':
-                    document.getElementById("content8").classList.toggle("show");
-                    break;
-                default:
-                    break;
-            }
-            break;
-        default:
-            break;
+    let key = evt.key;
+    if (!input_focus) {
+        switch (APP_MODE) {
+            // Default
+            case 0:
+                switch (key){
+                    case '1':
+                        openSankaku();
+                        break;
+                    case '2':
+                        openSearchPlus();
+                        break;
+                    case '3':
+                        break;
+                    case '4':
+                        break;
+                    case '5':
+                        break;
+                    case '6':
+                        break;
+                    case '7':
+                        break;
+                    case '0':
+                        document.getElementById("content8").classList.toggle("show");
+                        break;
+                    default:
+                        break;
+                }            
+                break;
+            
+            // Search Plus
+            case 2:
+                setLastnNowPress(key)
+                let orderbys = document.querySelectorAll(`.order-by input`);
+                let excludes = document.querySelectorAll(`.exclude-rating input`);
+                let personals = document.querySelectorAll(`.personal input`);
+
+                console.log(last_press,now_press,orderbys);
+
+                if (!isNaN(key)) {
+                    switch (last_press){
+                        case '1':
+                            orderbys[key-1].checked = true;
+                            insertButNotDup(tagListText,'order:',`order:${orderbys[key-1].value}`);
+                            insertButNotDup(tagList,'order:',`<a class="button tag tag-angular" target="_blank" href="https://chan.sankakucomplex.com/?tags=order%3A${orderbys[key-1].value}&commit=Search"><span class="">order:${orderbys[key-1].value}</span></a>`)
+                            showTagList(tagList);
+                            break;
+                        case '2':
+                            excludes[key-1].checked = !excludes[key-1].checked;
+                            if ( excludes[key-1].checked) {
+                                tagList.push(`<a class="button tag tag-angular" target="_blank" href="https://chan.sankakucomplex.com/?tags=${excludes[key-1].value}&commit=Search"><span class="">${excludes[key-1].value}</span></a>`);
+                                tagListText.push(excludes[key-1].value);
+                                showTagList(tagList);
+                            }
+                            else {
+                                findAndRemove(tagList,excludes[key-1].value)
+                                findAndRemove(tagListText,excludes[key-1].value)
+                                showTagList(tagList);
+                            }
+                            break;
+                        case '3':
+                            personals[key-1].checked = !personals[key-1].checked;
+
+                            break;
+                        case '4':
+                            break;
+                        case '5':
+                            break;
+                        case '6':
+                            break;
+                        case '7':
+                            break;
+                        case '0':
+                            document.getElementById("content8").classList.toggle("show");
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                break;
+            default:
+                break;
+        }
     }
   // }
 };
 
+function setLastnNowPress(key) {
+    last_press = now_press;
+    now_press = key;
+    window.setTimeout(function() { 
+        last_press = null;
+        now_press = null; 
+    }, 500);
+}
+
+function key_press(frevKey, needKey) {
+    console.log("keypress",first_press);
+    if(first_press) {
+        do_double_press(mess);
+        first_press = false;
+    } else {
+        first_press = true;
+        window.setTimeout(function() { 
+            first_press = false; 
+        }, 500);
+    }
+  }
+  
+  function do_double_press() {
+  }
 
 var menuButton1 = document.getElementById("menuButton1");
 menuButton1.addEventListener("click", function(){
