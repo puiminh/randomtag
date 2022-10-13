@@ -30,163 +30,6 @@
         </div>
       </div>
     </div> -->
-    <div id="content1" class="overlay">
-
-    </div>
-    <div id="content3" class="overlay">
-      <div>
-        <svg width="200" height="200" viewBox="0 0 100 100">
-          <polyline class="line-cornered stroke-still" points="0,0 100,0 100,100" stroke-width="10" fill="none"></polyline>
-          <polyline class="line-cornered stroke-still" points="0,0 0,100 100,100" stroke-width="10" fill="none"></polyline>
-          <polyline class="line-cornered stroke-animation" points="0,0 100,0 100,100" stroke-width="10" fill="none"></polyline>
-          <polyline class="line-cornered stroke-animation" points="0,0 0,100 100,100" stroke-width="10" fill="none"></polyline>
-        </svg>
-      </div>
-    </div>
-    <div id="content4" class="overlay">
-      <div>
-        <div class="loading-page">
-          <div class="counter">
-            <p>loading</p>
-            <h1 class="counter-text">0%
-              <!--
-              h1.abs loading
-              h1.abs.color loading
-              -->
-            </h1>
-            <hr/>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div id="content5" class="overlay">
-      <h1>content 5</h1>
-    </div>
-    <div id="content6" class="overlay">
-      <div class="page-title home text-center pt-3 pb-3 page-title-setting">
-        <span class="heading-setting"> Setting </span>    
-        </div>  
-      <div class="container switch-container">
-        <div class="switch-group-title">
-          <span>Movement</span>
-        </div>
-        <div class="switch-holder">
-            <div class="switch-label">
-              <span>Bluetooth</span>
-            </div>
-            <div class="switch-toggle">
-                <input type="checkbox" id="bluetooth">
-                <label for="bluetooth"></label>
-            </div>
-        </div>
-  
-        <div class="switch-holder">
-            <div class="switch-label">
-              <span>wi-fi</span>
-            </div>
-            <div class="switch-toggle">
-                <input type="checkbox" id="wifi">
-                <label for="wifi"></label>
-            </div>
-        </div>
-  
-        <div class="switch-holder">
-            <div class="switch-label">
-              <span>Location</span>
-            </div>
-            <div class="switch-toggle">
-                <input type="checkbox" id="location">
-                <label for="location"></label>
-            </div>
-        </div>
-
-        <div class="switch-group-title">
-          <span>Movement</span>
-        </div>
-        <div class="switch-holder">
-            <div class="switch-label">
-              <span>Bluetooth</span>
-            </div>
-            <div class="switch-toggle">
-                <input type="checkbox" id="bluetooth2">
-                <label for="bluetooth2"></label>
-            </div>
-        </div>
-  
-        <div class="switch-holder">
-            <div class="switch-label">
-              <span>wi-fi</span>
-            </div>
-            <div class="switch-toggle">
-                <input type="checkbox" id="wifi2">
-                <label for="wifi2"></label>
-            </div>
-        </div>
-  
-        <div class="switch-holder">
-            <div class="switch-label">
-              <span>Location</span>
-            </div>
-            <div class="switch-toggle">
-                <input type="checkbox" id="location2">
-                <label for="location2"></label>
-            </div>
-        </div>
-    </div>
-    </div>
-    <div id="content7" class="overlay">
-      <h1>content 7</h1>
-    </div>
-    <div id="content8" class="overlay">
-        <div class="page-title home text-center pt-3 pb-3 page-title-setting">
-          <span class="heading-setting"> Serect Setting </span>    
-        </div>  
-        <div class="container switch-container">
-            <div class="switch-group-title">
-                <span>Hide Ads</span>
-            </div>
-            <div class="switch-holder">
-                <div class="switch-label">
-                    <span>Logo&Header</span>
-                </div>
-                <div class="switch-toggle">
-                    <input type="checkbox" id="sankakuLogonHeaderHideButton"/>
-                    <label for="sankakuLogonHeaderHideButton"></label>
-                </div>
-            </div>
-
-            <div class="switch-holder">
-                <div class="switch-label">
-                    <span>Get Sankaku Plus Tab</span>
-                </div>
-                <div class="switch-toggle">
-                    <input type="checkbox" id="sankakuPreniumHideButton"/>
-                    <label for="sankakuPreniumHideButton"></label>
-                </div>
-            </div>
-
-            <div class="switch-holder">
-                <div class="switch-label">
-                    <span>Hide ads button</span>
-                </div>
-                <div class="switch-toggle">
-                    <input type="checkbox" id="sankakuHideAdsButton"/>
-                    <label for="sankakuHideAdsButton"></label>
-                </div>
-            </div>
-
-            <div class="switch-holder">
-              <div class="switch-label">
-                  <span>Hide Recommend Series</span>
-              </div>
-              <div class="switch-toggle">
-                  <input type="checkbox" id="sankakuRecommendSeries"/>
-                  <label for="sankakuRecommendSeries"></label>
-              </div>
-          </div>
-        </div>
-    </div>
     
     <main class="site-wrapper">
         <p class="hello-user">Hello, <span id="user-name" class="user-name"  contenteditable="true">minhb3o</span></p>
@@ -195,7 +38,7 @@
                           <div class="container">
                               <div class="row">
                                   <div class="col-xs-12 col-md-offset-1 col-md-10 col-lg-offset-2 col-lg-8">
-                                      <div class="page-title  home text-center">
+                                      <div id="app-title" class="page-title  home text-center">
                                         <span class="heading-page"> Random Tag
                                         </span>
                                           <p class="mt16">Make your browsing more enjoyable</p>
@@ -446,58 +289,274 @@
                         <div class="flex">
                           <span>Rating</span>
                           <div class="rating">
-                            <input type="radio" name="rating" id="rating-5">
+                            <input type="radio" name="rating" id="rating-5" value="5">
                             <label for="rating-5"></label>
-                            <input type="radio" name="rating" id="rating-4">
+                            <input type="radio" name="rating" id="rating-4" value="4">
                             <label for="rating-4"></label>
-                            <input type="radio" name="rating" id="rating-3">
+                            <input type="radio" name="rating" id="rating-3" value="3">
                             <label for="rating-3"></label>
-                            <input type="radio" name="rating" id="rating-2">
+                            <input type="radio" name="rating" id="rating-2" value="2">
                             <label for="rating-2"></label>
-                            <input type="radio" name="rating" id="rating-1">
+                            <input type="radio" name="rating" id="rating-1" value="1">
                             <label for="rating-1"></label>
                           </div>
                         </div>
 
                         <div class="parent">
-                          <div class="title-check-setting div1">
-                            Order By: 
-                          </div>
-                          <div class="title-check-setting div2">
-                            Not inclue self:
-                          </div>
-                          <div class="item">
-                            <div class="checkbox-rect2">
-                              <input type="checkbox" id="checkbox-rect2" name="check">
-                              <label for="checkbox-rect2">Check one</label>
+                          <!-- Orderby -->
+                          <div class="order-by">
+                            <div class="title-check-setting div1">
+                              Order By:
+                              <div class="overlay-line">
+                                <div class="group-key-mean">
+                                  <span class="keycap">A</span>
+                                </div>
+                              </div> 
+                            </div>
+                            <div class="item">
+                              <div class="checkbox-rect2">
+                                <input type="radio" id="popular" name="order" value="popular">
+                                <label for="popular">Popular</label>
+                              </div>
+                            </div>
+                            <div class="item">
+                              <div class="checkbox-rect2">
+                                <input type="radio" id="quality" name="order" value="quality">
+                                <label for="quality">Quality</label>
+                              </div>
+                            </div>
+                            <div class="item">
+                              <div class="checkbox-rect2">
+                                <input type="radio" id="favorite" name="order" value="favorite">
+                                <label for="favorite">Favorite</label>
+                              </div>
+                            </div>
+                            <div class="item">
+                              <div class="checkbox-rect2">
+                                <input type="radio" id="vote" name="order" value="vote">
+                                <label for="vote">Vote</label>
+                              </div>
+                            </div>
+                            <div class="item">
+                              <div class="checkbox-rect2">
+                                <input type="radio" id="view" name="order" value="view">
+                                <label for="view">View</label>
+                              </div>
+                            </div>
+                            <div class="item">
+                              <div class="checkbox-rect2">
+                                <input type="radio" id="random" name="order" value="random">
+                                <label for="random">Random</label>
+                              </div>
                             </div>
                           </div>
-                          <div class="item">
-                            <div class="checkbox-rect2">
-                              <input type="checkbox" id="checkbox-rect2" name="check">
-                              <label for="checkbox-rect2">Check one</label>
+                          <!-- Exclude rating -->
+                          <div class="exclude-rating">
+                            <div class="title-check-setting div2">
+                              Exclude rating:
+                            </div>
+                            <div class="item">
+                              <div class="checkbox-rect2">
+                                <input type="checkbox" id="nosafe" name="exclude" value="-rating:s">
+                                <label for="nosafe"><span class="bigminus">-</span> Safe</label>
+                              </div>
+                            </div>
+                            <div class="item">
+                              <div class="checkbox-rect2">
+                                <input type="checkbox" id="noques" name="exclude" value="-rating:q">
+                                <label for="noques"><span class="bigminus">-</span> Questionable</label>
+                              </div>
+                            </div>
+                            <div class="item">
+                              <div class="checkbox-rect2">
+                                <input type="checkbox" id="noexp" name="exclude" value="-rating:e">
+                                <label for="noexp"><span class="bigminus">-</span> Explicit</label>
+                              </div>
                             </div>
                           </div>
-                          <div class="item">
-                            <div class="checkbox-rect2">
-                              <input type="checkbox" id="checkbox-rect2" name="check">
-                              <label for="checkbox-rect2">Check one</label>
+                          <!-- Personal -->
+                          <div class="personal">
+                            <div class="title-check-setting div2">
+                              Personal Setting:
                             </div>
-                          </div>
-                          <div class="item">
-                            <div class="checkbox-rect2">
-                              <input type="checkbox" id="checkbox-rect2" name="check">
-                              <label for="checkbox-rect2">Check one</label>
+                            <div class="item">
+                              <div class="checkbox-rect2">
+                                <input type="checkbox" id="nofav" name="check">
+                                <label for="nofav"><span class="bigminus">-</span> Self Favorited</label>
+                              </div>
                             </div>
-                          </div>
-                          <div class="item">
-                            <div class="checkbox-rect2">
-                              <input type="checkbox" id="checkbox-rect2" name="check">
-                              <label for="checkbox-rect2">Check one</label>
+                            <div class="item">
+                              <div class="checkbox-rect2">
+                                <input type="checkbox" id="novote" name="check">
+                                <label for="novote"><span class="bigminus">-</span> Self Voted</label>
+                              </div>
+                            </div>
+                            <div class="item">
+                              <div class="checkbox-rect2">
+                                <input type="checkbox" id="nocustom" name="custom" value="nocustom">
+                                <label for="nocustom"><span class="bigminus">-</span> Custom Tag</label>
+                              </div>
                             </div>
                           </div>
                         </div>
                                
+                            </div>
+                            <div id="content1" class="overlay">
+
+                            </div>
+                            <div id="content3" class="overlay">
+                              <div>
+                                <svg width="200" height="200" viewBox="0 0 100 100">
+                                  <polyline class="line-cornered stroke-still" points="0,0 100,0 100,100" stroke-width="10" fill="none"></polyline>
+                                  <polyline class="line-cornered stroke-still" points="0,0 0,100 100,100" stroke-width="10" fill="none"></polyline>
+                                  <polyline class="line-cornered stroke-animation" points="0,0 100,0 100,100" stroke-width="10" fill="none"></polyline>
+                                  <polyline class="line-cornered stroke-animation" points="0,0 0,100 100,100" stroke-width="10" fill="none"></polyline>
+                                </svg>
+                              </div>
+                            </div>
+                            <div id="content4" class="overlay">
+                              <div>
+                                <div class="loading-page">
+                                  <div class="counter">
+                                    <p>loading</p>
+                                    <h1 class="counter-text">0%
+                                      <!--
+                                      h1.abs loading
+                                      h1.abs.color loading
+                                      -->
+                                    </h1>
+                                    <hr/>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                        
+                            <div id="content5" class="overlay">
+                              <h1>content 5</h1>
+                            </div>
+                            <div id="content6" class="overlay">
+                              <div class="page-title home text-center pt-3 pb-3 page-title-setting">
+                                <span class="heading-setting"> Setting </span>    
+                                </div>  
+                              <div class="container switch-container">
+                                <div class="switch-group-title">
+                                  <span>Movement</span>
+                                </div>
+                                <div class="switch-holder">
+                                    <div class="switch-label">
+                                      <span>Bluetooth</span>
+                                    </div>
+                                    <div class="switch-toggle">
+                                        <input type="checkbox" id="bluetooth">
+                                        <label for="bluetooth"></label>
+                                    </div>
+                                </div>
+                          
+                                <div class="switch-holder">
+                                    <div class="switch-label">
+                                      <span>wi-fi</span>
+                                    </div>
+                                    <div class="switch-toggle">
+                                        <input type="checkbox" id="wifi">
+                                        <label for="wifi"></label>
+                                    </div>
+                                </div>
+                          
+                                <div class="switch-holder">
+                                    <div class="switch-label">
+                                      <span>Location</span>
+                                    </div>
+                                    <div class="switch-toggle">
+                                        <input type="checkbox" id="location">
+                                        <label for="location"></label>
+                                    </div>
+                                </div>
+                        
+                                <div class="switch-group-title">
+                                  <span>Movement</span>
+                                </div>
+                                <div class="switch-holder">
+                                    <div class="switch-label">
+                                      <span>Bluetooth</span>
+                                    </div>
+                                    <div class="switch-toggle">
+                                        <input type="checkbox" id="bluetooth2">
+                                        <label for="bluetooth2"></label>
+                                    </div>
+                                </div>
+                          
+                                <div class="switch-holder">
+                                    <div class="switch-label">
+                                      <span>wi-fi</span>
+                                    </div>
+                                    <div class="switch-toggle">
+                                        <input type="checkbox" id="wifi2">
+                                        <label for="wifi2"></label>
+                                    </div>
+                                </div>
+                          
+                                <div class="switch-holder">
+                                    <div class="switch-label">
+                                      <span>Location</span>
+                                    </div>
+                                    <div class="switch-toggle">
+                                        <input type="checkbox" id="location2">
+                                        <label for="location2"></label>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                            <div id="content7" class="overlay">
+                              <h1>content 7</h1>
+                            </div>
+                            <div id="content8" class="overlay">
+                                <div class="page-title home text-center pt-3 pb-3 page-title-setting">
+                                  <span class="heading-setting"> Serect Setting </span>    
+                                </div>  
+                                <div class="container switch-container">
+                                    <div class="switch-group-title">
+                                        <span>Hide Ads</span>
+                                    </div>
+                                    <div class="switch-holder">
+                                        <div class="switch-label">
+                                            <span>Logo&Header</span>
+                                        </div>
+                                        <div class="switch-toggle">
+                                            <input type="checkbox" id="sankakuLogonHeaderHideButton"/>
+                                            <label for="sankakuLogonHeaderHideButton"></label>
+                                        </div>
+                                    </div>
+                        
+                                    <div class="switch-holder">
+                                        <div class="switch-label">
+                                            <span>Get Sankaku Plus Tab</span>
+                                        </div>
+                                        <div class="switch-toggle">
+                                            <input type="checkbox" id="sankakuPreniumHideButton"/>
+                                            <label for="sankakuPreniumHideButton"></label>
+                                        </div>
+                                    </div>
+                        
+                                    <div class="switch-holder">
+                                        <div class="switch-label">
+                                            <span>Hide ads button</span>
+                                        </div>
+                                        <div class="switch-toggle">
+                                            <input type="checkbox" id="sankakuHideAdsButton"/>
+                                            <label for="sankakuHideAdsButton"></label>
+                                        </div>
+                                    </div>
+                        
+                                    <div class="switch-holder">
+                                      <div class="switch-label">
+                                          <span>Hide Recommend Series</span>
+                                      </div>
+                                      <div class="switch-toggle">
+                                          <input type="checkbox" id="sankakuRecommendSeries"/>
+                                          <label for="sankakuRecommendSeries"></label>
+                                      </div>
+                                  </div>
+                                </div>
                             </div>
                           </div>
 

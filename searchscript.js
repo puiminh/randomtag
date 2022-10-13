@@ -6,6 +6,7 @@ const icon = searchWrapper.querySelector(".btn-search");
 const tagBox = document.querySelector(".link-tag-wrapper")
 const closeButton = document.querySelector(".clear-tag-list-button")
 const linkTag = searchWrapper.querySelector("a");
+
 let webLink;
 let tagList = [];
 let tagListText = [];
@@ -148,13 +149,13 @@ function showTagList(list){
 }
 
 
-function debounce(func, timeout = 300){
-  let timer;
-  return (...args) => {
-    clearTimeout(timer);
-    timer = setTimeout(() => { func.apply(this, args); }, timeout);
-  };
-}
+// function debounce(func, timeout = 300){
+//   let timer;
+//   return (...args) => {
+//     clearTimeout(timer);
+//     timer = setTimeout(() => { func.apply(this, args); }, timeout);
+//   };
+// }
 
 closeButton.addEventListener("click", ()=> {
   console.log("Click");
@@ -162,4 +163,86 @@ closeButton.addEventListener("click", ()=> {
   showTagList(tagList);
   closeButton.classList.add("hide");
   inputBox.value = '';
+  removeAllCheck();
 })
+
+function insertButNotDup(array, keyword, insertValue) {
+  let value = array.findIndex(e => {
+    return (e.search(keyword) != -1)
+  });
+  console.log(value)
+  if (value != -1) {
+    array[value] = insertValue;
+  } else {
+    array.push(insertValue);
+  }
+}
+
+function findAndRemove(array, keyword) {
+  let value = array.findIndex(e => {
+    return (e.search(keyword) != -1)
+  });
+  console.log(value)
+  if (value != -1) {
+    array.splice(value, 1)
+  } 
+}
+
+// Rating five star event
+const fiveStar = document.querySelectorAll('input[name="rating"]');
+var prevValueOfFiveStar = null;
+for (var i = 0; i < fiveStar.length; i++) {
+    fiveStar[i].addEventListener('change', function() {
+        (prevValueOfFiveStar) ? console.log(prevValueOfFiveStar.value): null;
+        if (this !== prevValueOfFiveStar) {
+            prevValueOfFiveStar = this;
+        }
+        let value = this.value;
+        insertButNotDup(tagListText,'threshold:',`threshold:${value}`);
+        insertButNotDup(tagList,'threshold:',`<a class="button tag tag-angular" target="_blank" href="https://chan.sankakucomplex.com/?tags=threshold%3A${value}&commit=Search"><span class="">threshold:${value}</span></a>`)
+        showTagList(tagList);
+      });
+}
+
+// Order By event
+
+const orderBy = document.querySelectorAll('input[name="order"]');
+var prevValueOfOrderBy = null;
+for (var i = 0; i < orderBy.length; i++) {
+  orderBy[i].addEventListener('change', function() {
+        (prevValueOfOrderBy) ? console.log(prevValueOfOrderBy.value): null;
+        if (this !== prevValueOfOrderBy) {
+            prevValueOfOrderBy = this;
+        }
+        let value = this.value;
+        insertButNotDup(tagListText,'order:',`order:${value}`);
+        insertButNotDup(tagList,'order:',`<a class="button tag tag-angular" target="_blank" href="https://chan.sankakucomplex.com/?tags=order%3A${value}&commit=Search"><span class="">order:${value}</span></a>`)
+        showTagList(tagList);
+      });
+}
+
+// Else radio event
+
+const checkBoxs = document.querySelectorAll('input[name="exclude"]');
+for (var i = 0; i < checkBoxs.length; i++) {
+  checkBoxs[i].addEventListener('change',(e)=>{
+    let value = e.target.value;
+    if (e.target.checked) {
+      tagList.push(`<a class="button tag tag-angular" target="_blank" href="https://chan.sankakucomplex.com/?tags=${value}&commit=Search"><span class="">${value}</span></a>`);
+      tagListText.push(value);
+      showTagList(tagList);
+    }
+    else {
+      findAndRemove(tagList,value)
+      findAndRemove(tagListText,value)
+      showTagList(tagList);
+    }
+  })
+}
+
+function removeAllCheck() {
+  let allChecks = document.querySelectorAll('input[type="checkbox"],input[type="radio"]');
+  for (var i = 0; i < allChecks.length; i++) {
+    allChecks[i].checked = false;
+  }
+}
