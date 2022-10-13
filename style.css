@@ -946,8 +946,8 @@ margin: auto
 
 .overlay {
   display: none;
-  /* position: fixed;
-  bottom: 0; */
+  position: relative;
+  bottom: 0;
   margin-top: 50px;
   width: 100%;
   background-color: rgba(0,0,0,1);
@@ -1244,13 +1244,13 @@ margin: auto
                0 0 20px #fff;
 }
 /* loading */
-svg {
+/* svg {
   position: fixed;
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%) rotate(45deg) scale(1);
           transform: translate(-50%, -50%) rotate(45deg) scale(1);
-}
+} */
 
 .stroke-still {
   stroke: #232323;
@@ -1540,3 +1540,35 @@ svg {
       .title-check-setting {
         position: relative;
       }
+
+      .pattern-button-group {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+      }
+
+      .pattern-button {
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 2px 3px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 10px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+        font-weight: 600;
+      }
+      
+      .pattern-button {
+        background-color: white; 
+        color: black; 
+        border: 1px solid var(--red);
+      }
+      
+      .pattern-button:hover {
+        background-color: var(--red);
+        color: white;
+      }
+
