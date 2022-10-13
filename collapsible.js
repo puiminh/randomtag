@@ -28,30 +28,37 @@
 //     });
 //   }
 var APP_MODE = 0;
-var input_focus = false;
+var search_focus = false;
 var last_press = null;
 var now_press = null;
 var i;
 const hexagon = document.getElementById("hexagon-menu");
 const apptitle = document.getElementById("app-title");
 
-inputBox.onfocus = (() => {
-    input_focus = true;
-    console.log(input_focus);
-  })
-  
-  inputBox.onblur = (() => {
-    input_focus = false;
-    console.log(input_focus);
-  
-  })
+
+const inputs = document.querySelectorAll('input[type="text"]')
+const startdate = document.querySelector('#startdate');
+const enddate = document.querySelector('#enddate');
+
+for (const input of inputs) {
+    input.onfocus = (() => {
+        search_focus = true;
+        console.log(search_focus);
+      })
+      
+      input.onblur = (() => {
+        search_focus = false;
+        console.log(search_focus);
+      
+      })   
+}
 
 document.onkeydown = function(evt){
     // evt = evt || window.event;
     // if(evt.shiftKey){
     // console.log('Shift');
     let key = evt.key;
-    if (!input_focus) {
+    if (!search_focus) {
         switch (APP_MODE) {
             // Default
             case 0:
@@ -82,6 +89,12 @@ document.onkeydown = function(evt){
             
             // Search Plus
             case 2:
+                switch (key) {
+                    case 'Enter':
+                        startdate.blur();
+                        enddate.blur();
+                        break;
+                }
                 setLastnNowPress(key)
                 let orderbys = document.querySelectorAll(`.order-by input`);
                 let excludes = document.querySelectorAll(`.exclude-rating input`);
@@ -92,12 +105,29 @@ document.onkeydown = function(evt){
                 if (!isNaN(key)) {
                     switch (last_press){
                         case '1':
+
+                            break;
+                        case '2':
+                            if(key == '1') {
+                                document.querySelector('#startdate').focus();
+                            } else if(key == '2') {
+                                document.querySelector('#enddate').focus();
+                            }
+                            break;
+                        case '5':
+                            personals[key-1].checked = !personals[key-1].checked;
+                            break;
+                        case '6':
+                            break;
+                        case '7':
+                            break;
+                        case '3':
                             orderbys[key-1].checked = true;
                             insertButNotDup(tagListText,'order:',`order:${orderbys[key-1].value}`);
                             insertButNotDup(tagList,'order:',`<a class="button tag tag-angular" target="_blank" href="https://chan.sankakucomplex.com/?tags=order%3A${orderbys[key-1].value}&commit=Search"><span class="">order:${orderbys[key-1].value}</span></a>`)
                             showTagList(tagList);
                             break;
-                        case '2':
+                        case '4':
                             excludes[key-1].checked = !excludes[key-1].checked;
                             if ( excludes[key-1].checked) {
                                 tagList.push(`<a class="button tag tag-angular" target="_blank" href="https://chan.sankakucomplex.com/?tags=${excludes[key-1].value}&commit=Search"><span class="">${excludes[key-1].value}</span></a>`);
@@ -109,18 +139,6 @@ document.onkeydown = function(evt){
                                 findAndRemove(tagListText,excludes[key-1].value)
                                 showTagList(tagList);
                             }
-                            break;
-                        case '3':
-                            personals[key-1].checked = !personals[key-1].checked;
-
-                            break;
-                        case '4':
-                            break;
-                        case '5':
-                            break;
-                        case '6':
-                            break;
-                        case '7':
                             break;
                         case '0':
                             document.getElementById("content8").classList.toggle("show");
@@ -161,6 +179,7 @@ function key_press(frevKey, needKey) {
   
   function do_double_press() {
   }
+
 
 var menuButton1 = document.getElementById("menuButton1");
 menuButton1.addEventListener("click", function(){
