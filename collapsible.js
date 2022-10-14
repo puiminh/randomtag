@@ -32,6 +32,9 @@ var search_focus = false;
 var last_press = null;
 var now_press = null;
 var i;
+
+var nocusmtomTagList = ['3d','animated_gif'];
+
 const hexagon = document.getElementById("hexagon-menu");
 const apptitle = document.getElementById("app-title");
 
@@ -114,9 +117,6 @@ document.onkeydown = function(evt){
                                 document.querySelector('#enddate').focus();
                             }
                             break;
-                        case '5':
-                            personals[key-1].checked = !personals[key-1].checked;
-                            break;
                         case '6':
                             break;
                         case '7':
@@ -139,6 +139,42 @@ document.onkeydown = function(evt){
                                 findAndRemove(tagListText,excludes[key-1].value)
                                 showTagList(tagList);
                             }
+                            break;
+                        case '5':
+                            personals[key-1].checked = !personals[key-1].checked;
+                            let user = localStorage.getItem('randomtag-username');
+                            
+                                if ( personals[key-1].checked) {
+                                    if (personals[key-1].value == 'nocustom') {
+                                        for (const tag of nocusmtomTagList) {
+                                            tagList.push(`<a class="button tag tag-angular" target="_blank" href="https://chan.sankakucomplex.com/?tags=-${tag}&commit=Search"><span class="">-${tag}</span></a>`);
+                                        }
+                                        tagListText.push(...nocusmtomTagList);
+                                        showTagList(tagList);
+                                        break;
+                                    }
+                                    tagList.push(`<a class="button tag tag-angular" target="_blank" href="https://chan.sankakucomplex.com/?tags=${personals[key-1].value+user}&commit=Search"><span class="">${personals[key-1].value+user}</span></a>`);
+                                    tagListText.push(personals[key-1].value+user);
+                                    showTagList(tagList);
+                                }
+                                else {
+                                    
+                                    if (personals[key-1].value == 'nocustom') {
+                                        for (const tag of nocusmtomTagList) {
+                                            findAndRemove(tagList,'-'+tag)
+                                            findAndRemove(tagListText,'-'+tag)
+                                        }
+                                        showTagList(tagList);
+                                        break;
+                                    }
+                                    tagList.push(`<a class="button tag tag-angular" target="_blank" href="https://chan.sankakucomplex.com/?tags=${personals[key-1].value+user}&commit=Search"><span class="">${personals[key-1].value+user}</span></a>`);
+                                    tagListText.push(personals[key-1].value+user);
+                                    showTagList(tagList);
+                                    
+                                    findAndRemove(tagList,personals[key-1].value+user)
+                                    findAndRemove(tagListText,personals[key-1].value+user)
+                                    showTagList(tagList);
+                                }
                             break;
                         case '0':
                             document.getElementById("content8").classList.toggle("show");
