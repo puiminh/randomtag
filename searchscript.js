@@ -74,33 +74,33 @@ inputBox.onkeyup = (e)=>{
       switch(e.code) {
         case "ArrowDown":
 
-          if (o>childs.length) {
-            o = 0;
+          if (element_select>childs.length) {
+            element_select = 0;
             break;
         }
           for (let c of childs) 
             c.classList.remove('dropbtn-selected')
-          childs[Math.abs(o) % childs.length].classList.add('dropbtn-selected');
-          childs[Math.abs(o) % childs.length].scrollIntoView();
-           o++;
+          childs[Math.abs(element_select) % childs.length].classList.add('dropbtn-selected');
+          childs[Math.abs(element_select) % childs.length].scrollIntoView();
+           element_select++;
           break;
         case "ArrowUp":
-          if (o<0) {
-            o = 0;
+          if (element_select<0) {
+            element_select = 0;
             break;
           }
 
           for (let c of childs) 
             c.classList.remove('dropbtn-selected')
-          childs[Math.abs(o) % childs.length].classList.add('dropbtn-selected');
-          childs[Math.abs(o) % childs.length].scrollIntoView();
-           o--;
+          childs[Math.abs(element_select) % childs.length].classList.add('dropbtn-selected');
+          childs[Math.abs(element_select) % childs.length].scrollIntoView();
+           element_select--;
           break;
         case "Enter":
-            console.log("select by Enter:", o,childs[o-1]);
+            console.log("select by Enter:", element_select,childs[element_select-1]);
             inputBox.value = '';
 
-              select(childs[o-1])
+              select(childs[element_select-1])
           break;
         
         case "Space":

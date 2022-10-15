@@ -1572,3 +1572,26 @@ margin: auto
         color: white;
       }
 
+      .my-recommend, .sankaku-recommend {
+        position: relative;
+      }
+
+      .recommend-wrap {
+        justify-content: space-around;
+      }
+
+      .recommend-display {
+        opacity: 1;
+        position: relative;
+        max-height: 300px;
+        width: 150px;
+        overflow-y: scroll;
+      }
+
+      .recommend-display li {
+        display: block;
+        pointer-events: auto;
+        border-bottom: 2px solid #ff0037;
+        padding: 8px 2px;
+      }
+
