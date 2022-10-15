@@ -279,11 +279,11 @@
                         <div class="flex">
                           <div>
                             <label for="startdate">Start Date</label>
-                            <input type="date" id="startdate" name="startdate">
+                            <input type="date" id="startdate" name="startdate" min="2008-07-01" max="2030-07-01">
                           </div>
                           <div>
                             <label for="enddate">End Date</label>
-                            <input type="date" id="enddate" name="enddate">  
+                            <input type="date" id="enddate" name="enddate" min="2008-07-01" max="2030-07-01">  
                           </div>
                         </div>
                         <div class="flex">
@@ -428,24 +428,21 @@
                             </div>
                             <div id="content3" class="overlay">
                               <div>
-                                <svg width="200" height="200" viewBox="0 0 100 100">
-                                  <polyline class="line-cornered stroke-still" points="0,0 100,0 100,100" stroke-width="10" fill="none"></polyline>
-                                  <polyline class="line-cornered stroke-still" points="0,0 0,100 100,100" stroke-width="10" fill="none"></polyline>
-                                  <polyline class="line-cornered stroke-animation" points="0,0 100,0 100,100" stroke-width="10" fill="none"></polyline>
-                                  <polyline class="line-cornered stroke-animation" points="0,0 0,100 100,100" stroke-width="10" fill="none"></polyline>
-                                </svg>
-                              </div>
-                              <div>
                                 <div class="loading-page">
                                   <div class="counter">
-                                    <p>loading</p>
+                                    <p id="random-status" class="blink_me">Random...</p>
                                     <h1 class="counter-text">0%
-                                      <!--
-                                      h1.abs loading
-                                      h1.abs.color loading
-                                      -->
                                     </h1>
                                     <hr/>
+                                  </div>
+                                </div>
+                                <div class="recommend-display-wrap">
+                                  <div class="recommend-display">
+                                    <li id="random-li-1"></li>
+                                    <li id="random-li-2"></li>
+                                    <li id="random-li-3"></li>
+                                    <li id="random-li-4"></li>
+                                    <li id="random-li-5"></li>
                                   </div>
                                 </div>
                               </div>
@@ -457,40 +454,32 @@
                               <div class="flex recommend-wrap">
                                   <div class="sankaku-recommend">
                                     <div class="sankaku-recommend-title">
-                                      Sankaku Recommend:
+                                      Trending Recommend:
                                     </div>
                                     <div class="recommend-display">
-                                      <li>tag_me</li>
-                                      <li>tag_me</li>
-                                      <li>tag_me</li>
-                                      <li>tag_me</li>
-                                      <li>tag_me</li>
-                                      <li>tag_me</li>
-                                      <li>a</li>
-                                      <li>tag_me</li>
-                                      <li>tag_me</li>
-                                      <li>tag_me</li>
-                                      <li>tag_me</li>
-                                      <li>tag_me</li>
+                                      <div>
+                                        <svg width="80" height="80" viewBox="0 0 100 100">
+                                          <polyline class="line-cornered stroke-still" points="0,0 100,0 100,100" stroke-width="10" fill="none"></polyline>
+                                          <polyline class="line-cornered stroke-still" points="0,0 0,100 100,100" stroke-width="10" fill="none"></polyline>
+                                          <polyline class="line-cornered stroke-animation" points="0,0 100,0 100,100" stroke-width="10" fill="none"></polyline>
+                                          <polyline class="line-cornered stroke-animation" points="0,0 0,100 100,100" stroke-width="10" fill="none"></polyline>
+                                        </svg>
+                                      </div>
                                     </div>
                                  </div>
                                   <div class="my-recommend">
                                     <div class="my-recommend-title">
-                                      My Recommend:
+                                     Recommend For You:
                                     </div>
                                     <div class="recommend-display">
-                                      <li>tag_me</li>
-                                      <li>tag_me</li>
-                                      <li>tag_me</li>
-                                      <li>tag_me</li>
-                                      <li>tag_me</li>
-                                      <li>tag_me</li>
-                                      <li>a</li>
-                                      <li>tag_me</li>
-                                      <li>tag_me</li>
-                                      <li>tag_me</li>
-                                      <li>tag_me</li>
-                                      <li>tag_me</li>
+                                      <div>
+                                        <svg width="80" height="80" viewBox="0 0 100 100">
+                                          <polyline class="line-cornered stroke-still" points="0,0 100,0 100,100" stroke-width="10" fill="none"></polyline>
+                                          <polyline class="line-cornered stroke-still" points="0,0 0,100 100,100" stroke-width="10" fill="none"></polyline>
+                                          <polyline class="line-cornered stroke-animation" points="0,0 100,0 100,100" stroke-width="10" fill="none"></polyline>
+                                          <polyline class="line-cornered stroke-animation" points="0,0 0,100 100,100" stroke-width="10" fill="none"></polyline>
+                                        </svg>
+                                      </div>
                                     </div>
                                   </div>
                               </div>
@@ -632,16 +621,27 @@
                           
                       </div>
                   </div>
-                  <div class="line">
+                  <div id="bottom-keycap" class="line">
                     <div class="group-key-mean">
-                      <span class="keycap">A</span>
-                      <span class="meaning">Back</span>
-                    </div>
+                        <span class="keycap">1</span>
+                        <span class="meaning">Sankaku</span>
+                    </div> 
+                
                     <div class="group-key-mean">
-                      <span class="keycap">A</span>
-                      <span class="meaning">Back</span>
-                    </div>
-                  </div>
+                        <span class="keycap">2</span>
+                        <span class="meaning">Search+</span>
+                    </div> 
+                
+                    <div class="group-key-mean">
+                        <span class="keycap">3</span>
+                        <span class="meaning">Random</span>
+                    </div> 
+                
+                    <div class="group-key-mean">
+                        <span class="keycap">4</span>
+                        <span class="meaning">Recommend</span>
+                    </div> 
+                </div>
                   <!-- <my-counter id="counter" count="10"></my-counter> -->
         </main>
     <!-- <script src="./counter.js"></script> -->

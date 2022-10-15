@@ -1,41 +1,7 @@
-document.querySelector('#menuButton4').addEventListener("click", function(event) { 
-    var counter = 0;
-    var c = 0;
-    console.log(bigData)
-    var loadingFunc = setInterval(function(){
-        if(counter%2 == 0)
-        document.querySelector(".loading-page .counter h1").textContent = `${bigData[c].name}`;
-        // document.querySelector(".loading-page .counter hr").style.width = c + "%";
-        //$(".loading-page .counter").css("background", "linear-gradient(to right, #f60d54 "+ c + "%,#0d0d0d "+ c + "%)");
-  
-      /*
-      $(".loading-page .counter h1.color").css("width", c + "%");
-      */
-      counter++;
-      c++;
-        // console.log(c)
-      if(counter == 40) {
-          clearInterval(loadingFunc);
-      }
-    }, 100);
+const KEY = {}
 
-  // 
-});
-// loadingFunc(); 
-
-async function waitUntil() {
-  let counter=0, c = 0;
-  return await new Promise(resolve => {
-    const interval = setInterval(() => {
-        counter++;
-        c = Math.floor(Math.random() * 40)
-        console.log("c - counter:",c,counter);
-      if (counter > 10) {
-        resolve(c);
-        clearInterval(interval);
-      };
-    }, 50);
-  });
-}
-
-// tooltip: https://codepen.io/roydigerhund/pen/gPyzEa/
+KEY['KEY_CAP_0'] = [{key: '1', mean: 'Sankaku'}, {key: '2', mean: 'Search+'}, {key: '3', mean: 'Random'}, {key: '4', mean: 'Recommend'}, 
+// {key: '5', mean: 'Keybroad'}, {key: '6', mean: 'Setting'}, {key: '7', mean: 'Readme'}
+]
+//🠖 🠕 🠗 🠔
+KEY['KEY_CAP_3'] = [{key: 'Enter', mean: 'Grab this!'},{key: '🠕', mean: 'x2: Again!'},{key: '🠗', mean: 'x2: Roll 5'},{key: '1..5', mean: 'Grab 1..5'}]

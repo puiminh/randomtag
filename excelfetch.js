@@ -30,9 +30,43 @@ async function fetchByExcel(searchKey = '') {
     });
 }
 
+//https://capi-v2.sankakucomplex.com/posts/keyset?lang=en&limit=20&tags=fav:minhb3o
+
 fetchByExcel().then(()=> {
 
 })
+
+
+async function fetchingSankakuApi(url) {
+    let userRecommendTags = [];
+    console.log("fetching: ",url);
+    try {
+        const response = await axios.get(url);
+        const {data} = response.data;
+        for (const post of data) {
+            // console.log('Processing for post: ',post);
+            for (const element of post.tags) {
+                // console.log('Processing for element: ',element);
+                if(element.type == '8' || element.type == '9') continue;
+                let foundE = userRecommendTags.findIndex(e => e.id === element.id)
+                if (foundE == -1) {
+                    let picked = (({ name_en, id, count }) => ({ name_en, id, count, recCount: 1 }))(element);
+                    // console.log('Not foundE, insert a new one: ',element);
+                    userRecommendTags.push(picked);   
+                } else {
+                    // console.log('Processing for foundE: ',userRecommendTags[foundE]);
+                    userRecommendTags[foundE].recCount++;
+                }
+            }   
+        }
+        
+        return userRecommendTags.sort(function(a, b) { 
+            return ((b.recCount - a.recCount))  
+        }).slice(0,150);
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 async function fetching(searchKey) {
     // if (!justFetched) {
