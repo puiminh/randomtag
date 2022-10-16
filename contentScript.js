@@ -193,6 +193,7 @@ document.head.appendChild(styleSheet);
         // if (document.querySelector("#post-content img")) addImgView(document.querySelector("#post-content img").src);
         //#post-content img
         if (postId) {
+          complexFetch();
           insertRecommendImg();
           changingElement();
         }
@@ -420,3 +421,105 @@ function changingElement() {
   document.querySelector('.r1-unit').className = 'r1-unit-M';
   // document.querySelector('#add-to-favs > .favoriteIcon');
 }
+
+function complexFetch() {
+  let generalTagList = [];
+  let uniqueTagList = [];
+  let finalTagList = [];
+  let imgList = '';
+  let postList = [];
+  fetch(`https://capi-v2.sankakucomplex.com/posts?lang=en&page=1&limit=1&tags=id_range:${postId}`)
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(response) {
+    console.log(response);
+    
+    
+     const post = response[0];
+     console.log('Processing for post: ',post);
+     // let picked = (({ id, preview_url, has_children, parent_id }) => ({ id, preview_url, has_children, parent_id }))(post);
+      for (const element of post.tags) {
+        // console.log('Processing for element: ',element);
+        if(element.type == '8' || element.type == '9' || element.count <= 30000 || element.count >= 1200000) continue;
+
+            // console.log('Not foundE, insert a new one: ',element);
+        if (element.type == 0)
+            generalTagList.push(element);
+          else {
+            uniqueTagList.push(element);
+          }
+      }
+      generalTagList = generalTagList.sort(() => .5 - Math.random()).slice(0,5);
+      uniqueTagList = uniqueTagList.sort(() => .5 - Math.random()).slice(0,2);
+      
+      finalTagList.push(...generalTagList,...uniqueTagList);
+      finalTagList = finalTagList.sort(() => .5 - Math.random()).slice(0,3)
+      return finalTagList.map(a => a.name_en).join('+');
+  }).then(function(response) {
+    console.log('Tag after filter: ', response);
+
+    fetch(`https://capi-v2.sankakucomplex.com/posts?lang=en&page=1&limit=20&tags=${response}`)
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(response) {
+      console.log(response);
+      for (const post of response) {
+       if (!post.preview_url && !post.sample_url) continue;
+       console.log('Processing for post: ',post);
+       // let picked = (({ id, preview_url, has_children, parent_id }) => ({ id, preview_url, has_children, parent_id }))(post);
+       postList.push(post);
+       let size = (post.width>post.height) ? ' width="150px" height="auto" ' :  ' width="auto" height="150px" ';
+       imgList += `
+       <span class="thumb" id="p${post.id}" style="position: relative;">
+       <a href="/vi/post/show/${post.id}" target="_blank"> 
+         <img class="preview has-parent" 
+              src="${post.preview_url? post.preview_url : post.sample_url}" 
+              alt="" 
+             ${size}
+              pagespeed_url_hash="1077084331" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+       </a>
+      </span>`
+       }
+ 
+       let parentImg = `
+       <div id="recommended">
+       <h3>Similar to this Post: </h3>
+       <div id="recommendations">
+         ${imgList}
+       </div>
+       </div>
+          `
+          let old = parentWrap.innerHTML;
+          parentWrap.innerHTML +=parentImg;
+       
+    });
+  })
+}
+
+    //  postList.push(post);
+    //  let size = (post.width>post.height) ? ' width="150px" height="auto" ' :  ' width="auto" height="150px" ';
+    //  imgList += `
+    //  <span class="thumb" id="p${post.id}" style="position: relative;">
+    //  <a href="/vi/post/show/${post.id}" target="_blank"> 
+    //    <img class="preview has-parent" 
+    //         src="${post.preview_url? post.preview_url : post.sample_url}" 
+    //         alt="" 
+    //        ${size}
+    //         pagespeed_url_hash="1077084331" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+    //  </a>
+    // </span>`
+    
+
+    //  let parentImg = `
+    //  <div id="recommended">
+    //  <h3>Recommend for this Post: </h3>
+    //  <div id="recommendations">
+    //    ${imgList}
+    //  </div>
+    //  </div>
+    //     `
+    //     let old = parentWrap.innerHTML;
+    //     parentWrap.innerHTML +=parentImg;
+     
