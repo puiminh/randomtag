@@ -82,7 +82,7 @@ var added = false;
             if (!added) {
               added = true;
               console.log('Full screen');
-              if (document.querySelector("#post-content img")) addImgView(document.querySelector("#post-content img").src);              
+              if (document.querySelector("#post-content img")) {addImgView(document.querySelector("#post-content img").src); fitScreenFunc(div,img)};              
             } else {
               console.log(div);
               div.style.display = 'none';
@@ -240,7 +240,7 @@ function addImgView(link){
     div.appendChild(span);
     div.setAttribute("style",`display: block;
     position: fixed;
-    z-index: 999;
+    z-index: 10001;
     left: 0;
     top: 0;
     overflow: auto;
@@ -381,16 +381,18 @@ function insertRecommendImg() {
    .then(function(response) {
      console.log(response);
      for (const post of response) {
-      if (!post.preview_url) continue;
+      if (!post.preview_url && !post.sample_url) continue;
       console.log('Processing for post: ',post);
       // let picked = (({ id, preview_url, has_children, parent_id }) => ({ id, preview_url, has_children, parent_id }))(post);
       postList.push(post);
+      let size = (post.width>post.height) ? ' width="150px" height="auto" ' :  ' width="auto" height="150px" ';
       imgList += `
       <span class="thumb" id="p${post.id}" style="position: relative;">
       <a href="/vi/post/show/${post.id}" target="_blank"> 
         <img class="preview has-parent" 
-             src="${post.preview_url}" 
-             alt="" width="150px" height="auto" 
+             src="${post.preview_url? post.preview_url : post.sample_url}" 
+             alt="" 
+            ${size}
              pagespeed_url_hash="1077084331" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
       </a>
      </span>`
