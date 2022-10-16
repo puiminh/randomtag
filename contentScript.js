@@ -6,49 +6,96 @@ var scrollPoint  = 0;
 var input = document.querySelector('#tags');
 var parentWrap = document.querySelector('#web-share');
 var postId = window.location.pathname.split('post/show/')[1];
+var added = false;
 (() => {
   document.onkeydown = function(evt){
     // evt = evt || window.event;
     // if(evt.shiftKey){
     // console.log('Shift');
     if (document.activeElement != input) {
-      switch (evt.key){
-        // case 'A':
-        // case 'a':
-        // case 'ArrowLeft':
-        case ',':
-            key_press({tab: "back"});
+
+      if (evt.altKey) {
+        console.log(evt.key);
+        switch (evt.key) {
+          case '0':
+            document.querySelector('#add-to-favs > .favoriteIcon').click();
             break;
-        // case 'd':
-        // case 'D':
-        // case 'ArrowRight':
-        case '.':
-            key_press({tab: "next"});
+          case '1':
+            document.querySelector('.r1-unit-M').click();
             break;
-        case '1' : newTab(1);
-        break;
-        case '2' : newTab(2);
-        break;
-        case '3' : newTab(3);
-        break;
-        case '4' : newTab(4);
-        break;
-        case '5' : newTab(5);
-        break;
-        case '6' : newTab(6);
-        break;
-        case '7' : newTab(7);
-        break;
-        case '8' : newTab(8);
-        break;
-        case '9' : newTab(9);
-        break;
-        case '0' : newTab(0);
-        break;
-        case 'ArrowUp':
-        case 'ArrowDown':
-        default:
+          case '2':
+            document.querySelector('.r2-unit-M').click();
             break;
+
+          case '3':
+            document.querySelector('.r3-unit-M').click();
+            break;
+
+          case '4':
+            document.querySelector('.r4-unit-M').click();
+
+            break;
+          
+          case '5':
+            document.querySelector('.r5-unit-M').click();
+            
+            break;
+          default:
+            break;
+        }
+      } else {
+        switch (evt.key){
+          // case 'A':
+          // case 'a':
+          // case 'ArrowLeft':
+          case ',':
+              key_press({tab: "back"});
+              break;
+          // case 'd':
+          // case 'D':
+          // case 'ArrowRight':
+          case '.':
+              key_press({tab: "next"});
+              break;
+          case '1' : newTab(1);
+          break;
+          case '2' : newTab(2);
+          break;
+          case '3' : newTab(3);
+          break;
+          case '4' : newTab(4);
+          break;
+          case '5' : newTab(5);
+          break;
+          case '6' : newTab(6);
+          break;
+          case '7' : newTab(7);
+          break;
+          case '8' : newTab(8);
+          break;
+          case '9' : newTab(9);
+          break;
+          case '0' : newTab(0);
+          break;
+          case 'F11':
+            evt.preventDefault();
+            if (!added) {
+              added = true;
+              console.log('Full screen');
+              if (document.querySelector("#post-content img")) addImgView(document.querySelector("#post-content img").src);              
+            } else {
+              console.log(div);
+              div.style.display = 'none';
+              added = false;
+            }
+
+            break;
+          case 'ArrowUp':
+          case 'ArrowDown':
+          break;
+          default:
+              break;
+      }
     }
     }
 
@@ -145,11 +192,11 @@ document.head.appendChild(styleSheet);
         // console.log(document.querySelector(".photoImg img").src);
         // if (document.querySelector("#post-content img")) addImgView(document.querySelector("#post-content img").src);
         //#post-content img
-        if (1) {
-          insertParrentImg(19411463);
+        if (postId) {
+          insertRecommendImg();
+          changingElement();
         }
-
-        getAllImgInView();
+          getAllImgInView();
 
       });
     
@@ -166,6 +213,11 @@ document.head.appendChild(styleSheet);
     // chrome.tabs.update(281475921,{selected:true});
 })();
 
+const div = document.createElement("div");
+const span = document.createElement("span");
+const text = document.createTextNode("x");
+const img = document.createElement("img");
+
 function addImgView(link){
 
 	// <div>
@@ -174,11 +226,6 @@ function addImgView(link){
 	// 	</div>
 	// </div>
 
-
-    const div = document.createElement("div");
-    const span = document.createElement("span");
-    const text = document.createTextNode("x");
-    const img = document.createElement("img");
     span.appendChild(text);
     span.setAttribute("style", `
     position: absolute;
@@ -218,7 +265,7 @@ function addImgView(link){
     })
 
     span.addEventListener('click', () => {
-      div.style.display = "none";
+      close(div);
     })
 
     img.addEventListener('click', () => {
@@ -226,6 +273,10 @@ function addImgView(link){
       console.log('click'); 
       if(!fit) {fitScreenFunc(div,img)} else defaultFunc(div,img);
     })
+}
+
+function close(element) {
+  element.style.display = "none";
 }
 
 function fitScreenFunc(div,img) {
@@ -320,16 +371,17 @@ function resetNumberOnImg() {
   })
 }
 
-function insertParrentImg(id) {
+function insertRecommendImg() {
   let postList = [];
   let imgList = '';
-  fetch(`https://capi-v2.sankakucomplex.com/posts?lang=en&page=1&limit=40&tags=parent:19411463`)
+  fetch(`https://capi-v2.sankakucomplex.com/posts?lang=en&page=1&limit=20&tags=recommended_for_post:${postId}`)
    .then(function(response) {
      return response.json();
    })
    .then(function(response) {
      console.log(response);
      for (const post of response) {
+      if (!post.preview_url) continue;
       console.log('Processing for post: ',post);
       // let picked = (({ id, preview_url, has_children, parent_id }) => ({ id, preview_url, has_children, parent_id }))(post);
       postList.push(post);
@@ -338,7 +390,7 @@ function insertParrentImg(id) {
       <a href="/vi/post/show/${post.id}" target="_blank"> 
         <img class="preview has-parent" 
              src="${post.preview_url}" 
-             alt="" width="auto" height="150px" 
+             alt="" width="150px" height="auto" 
              pagespeed_url_hash="1077084331" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
       </a>
      </span>`
@@ -346,7 +398,7 @@ function insertParrentImg(id) {
 
       let parentImg = `
       <div id="recommended">
-      <h3>Children of this Post: </h3>
+      <h3>Recommend for this Post: </h3>
       <div id="recommendations">
         ${imgList}
       </div>
@@ -356,69 +408,13 @@ function insertParrentImg(id) {
          parentWrap.innerHTML +=parentImg;
       
    });
-
-
-  // fetchingSankakuApi(`https://capi-v2.sankakucomplex.com/posts?lang=en&page=1&limit=40&tags=parent:19411463`).then((array)=> {
-  //   console.log(array);
-  //   let my = array.map((e)=>{ //emtySearch
-  //       return data = `<li>${e.name_en}</li>`;
-  //   });
-  //   // parentImg.innerHTML = my.join('');
-  // })
-
-//   let element = `
-//   <span class="thumb" id="p${id}" style="position: relative;">
-//  <a href="/vi/post/show/${id}" target="_blank"> 
-//    <img class="preview has-parent" 
-//         src="//v.sankakucomplex.com/data/preview/41/dc/41dca5b5d4d5566fb241da03216431bb.jpg?e=1665882213&amp;m=zid2kCMmbtZJMA4tZPXGWA&amp;expires=1665882213&amp;token=TB2LA0kzda4Js1oN6U0Y5wrcNaP5KeowpEuCPVyVBxk" 
-//         alt="" width="53" height="150" 
-//         pagespeed_url_hash="1077084331" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-//  </a>
-// </span>
-// `
-//   let parentImg = `
-// <div id="recommended">
-// <h3>Parent of this Post: </h3>
-// <div id="recommendations">
-
-// </div>
-// </div>
-//    `
-//    let old = parentWrap.innerHTML;
-//    parentWrap.innerHTML +=parentImg;
 }
 
-// async function fetchingSankakuApi(url) {
-//   let postList = [];
-//   console.log("fetching: ",url);
-//   try {
-//       const response = await axios.get(url);
-//       const {data} = response;
-//       for (const post of data) {
-//           console.log('Processing for post: ',post);
-//           // let picked = (({ id, preview_url, has_children, parent_id }) => ({ id, preview_url, has_children, parent_id }))(post);
-//           postList.push(post);
-//       }
-      
-//       return postList;
-//   } catch (error) {
-//       console.log(error)
-//   }
-// }
-
-function fetchingSankakuApi(){
-  let postList = [];
-  fetch(`https://capi-v2.sankakucomplex.com/posts?lang=en&page=1&limit=40&tags=parent:19411463`)
-   .then(function(response) {
-     return response.json();
-   })
-   .then(function(response) {
-     console.log(response);
-     for (const post of data) {
-      console.log('Processing for post: ',post);
-      // let picked = (({ id, preview_url, has_children, parent_id }) => ({ id, preview_url, has_children, parent_id }))(post);
-      postList.push(post);
-      }
-      return postList;
-   });
- };
+function changingElement() {
+  document.querySelector('.r5-unit').className = 'r5-unit-M';
+  document.querySelector('.r4-unit').className = 'r4-unit-M';
+  document.querySelector('.r3-unit').className = 'r3-unit-M';
+  document.querySelector('.r2-unit').className = 'r2-unit-M';
+  document.querySelector('.r1-unit').className = 'r1-unit-M';
+  // document.querySelector('#add-to-favs > .favoriteIcon');
+}
