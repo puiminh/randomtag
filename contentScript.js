@@ -4,6 +4,8 @@ var allTab = [];
 var imgNow = [];
 var scrollPoint  = 0;
 var input = document.querySelector('#tags');
+var parentWrap = document.querySelector('#web-share');
+var postId = window.location.pathname.split('post/show/')[1];
 (() => {
   document.onkeydown = function(evt){
     // evt = evt || window.event;
@@ -53,7 +55,7 @@ var input = document.querySelector('#tags');
   // }
 };
 document.body.onscroll = function(e) {
-  console.log((window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop))
+  // console.log((window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop))
   getAllImgInView();
 }
     console.log('contentScript is running...')
@@ -141,8 +143,12 @@ document.head.appendChild(styleSheet);
     window.addEventListener('load', (event) => {
         console.log('page is fully loaded');
         // console.log(document.querySelector(".photoImg img").src);
-        if (document.querySelector("#post-content img")) addImgView(document.querySelector("#post-content img").src);
+        // if (document.querySelector("#post-content img")) addImgView(document.querySelector("#post-content img").src);
         //#post-content img
+        if (1) {
+          insertParrentImg(19411463);
+        }
+
         getAllImgInView();
 
       });
@@ -266,6 +272,9 @@ function newTab(number) {
 
 function getAllImgInView() {
   console.log("running getAllImgInView...")
+  // if (window.location.pathname.includes("post/show")) {
+  //   console.log('Not in search, no!');
+  // }
   let count = 0;
   let list = document.querySelectorAll('.thumb:not(.blacklisted) a');
   resetNumberOnImg();
@@ -310,3 +319,106 @@ function resetNumberOnImg() {
     e.remove();
   })
 }
+
+function insertParrentImg(id) {
+  let postList = [];
+  let imgList = '';
+  fetch(`https://capi-v2.sankakucomplex.com/posts?lang=en&page=1&limit=40&tags=parent:19411463`)
+   .then(function(response) {
+     return response.json();
+   })
+   .then(function(response) {
+     console.log(response);
+     for (const post of response) {
+      console.log('Processing for post: ',post);
+      // let picked = (({ id, preview_url, has_children, parent_id }) => ({ id, preview_url, has_children, parent_id }))(post);
+      postList.push(post);
+      imgList += `
+      <span class="thumb" id="p${post.id}" style="position: relative;">
+      <a href="/vi/post/show/${post.id}" target="_blank"> 
+        <img class="preview has-parent" 
+             src="${post.preview_url}" 
+             alt="" width="auto" height="150px" 
+             pagespeed_url_hash="1077084331" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+      </a>
+     </span>`
+      }
+
+      let parentImg = `
+      <div id="recommended">
+      <h3>Children of this Post: </h3>
+      <div id="recommendations">
+        ${imgList}
+      </div>
+      </div>
+         `
+         let old = parentWrap.innerHTML;
+         parentWrap.innerHTML +=parentImg;
+      
+   });
+
+
+  // fetchingSankakuApi(`https://capi-v2.sankakucomplex.com/posts?lang=en&page=1&limit=40&tags=parent:19411463`).then((array)=> {
+  //   console.log(array);
+  //   let my = array.map((e)=>{ //emtySearch
+  //       return data = `<li>${e.name_en}</li>`;
+  //   });
+  //   // parentImg.innerHTML = my.join('');
+  // })
+
+//   let element = `
+//   <span class="thumb" id="p${id}" style="position: relative;">
+//  <a href="/vi/post/show/${id}" target="_blank"> 
+//    <img class="preview has-parent" 
+//         src="//v.sankakucomplex.com/data/preview/41/dc/41dca5b5d4d5566fb241da03216431bb.jpg?e=1665882213&amp;m=zid2kCMmbtZJMA4tZPXGWA&amp;expires=1665882213&amp;token=TB2LA0kzda4Js1oN6U0Y5wrcNaP5KeowpEuCPVyVBxk" 
+//         alt="" width="53" height="150" 
+//         pagespeed_url_hash="1077084331" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+//  </a>
+// </span>
+// `
+//   let parentImg = `
+// <div id="recommended">
+// <h3>Parent of this Post: </h3>
+// <div id="recommendations">
+
+// </div>
+// </div>
+//    `
+//    let old = parentWrap.innerHTML;
+//    parentWrap.innerHTML +=parentImg;
+}
+
+// async function fetchingSankakuApi(url) {
+//   let postList = [];
+//   console.log("fetching: ",url);
+//   try {
+//       const response = await axios.get(url);
+//       const {data} = response;
+//       for (const post of data) {
+//           console.log('Processing for post: ',post);
+//           // let picked = (({ id, preview_url, has_children, parent_id }) => ({ id, preview_url, has_children, parent_id }))(post);
+//           postList.push(post);
+//       }
+      
+//       return postList;
+//   } catch (error) {
+//       console.log(error)
+//   }
+// }
+
+function fetchingSankakuApi(){
+  let postList = [];
+  fetch(`https://capi-v2.sankakucomplex.com/posts?lang=en&page=1&limit=40&tags=parent:19411463`)
+   .then(function(response) {
+     return response.json();
+   })
+   .then(function(response) {
+     console.log(response);
+     for (const post of data) {
+      console.log('Processing for post: ',post);
+      // let picked = (({ id, preview_url, has_children, parent_id }) => ({ id, preview_url, has_children, parent_id }))(post);
+      postList.push(post);
+      }
+      return postList;
+   });
+ };
