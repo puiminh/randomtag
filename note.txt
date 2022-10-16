@@ -1,7 +1,0 @@
-recommend: https://capi-v2.sankakucomplex.com/posts?lang=en&page=1&limit=40&tags=recommended_for_post:19411651
-
-parent: https://capi-v2.sankakucomplex.com/posts?lang=en&page=1&limit=1&tags=id_range:19411463
-
-child: https://capi-v2.sankakucomplex.com/posts?lang=en&page=1&limit=40&tags=parent:19411463
-
-localStorage.setItem("plustitial_last_run",3333333333333) //

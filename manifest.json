@@ -3,7 +3,6 @@
     "version": "1.0.0",
     "description": "Random Tag",
     "permissions": ["storage", "tabs"],
-    "host_permissions": ["<all_urls>"],
     "background": {
       "service_worker": "background.js"
     },
