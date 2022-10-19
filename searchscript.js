@@ -26,8 +26,8 @@ inputBox.onkeyup = (e)=>{
             // webLink = `https://chan.sankakucomplex.com/?tags=${searchTag}&commit=Search`;
             // linkTag.setAttribute("href", webLink);
             // linkTag.click();
-            // inputBox.select();
-            // inputBox.setSelectionRange(0, 99999); // For mobile devices
+            inputBox.select();
+            inputBox.setSelectionRange(0, 99999); // For mobile devices
              // Copy the text inside the text field
             navigator.clipboard.writeText(copySearchTag);
         }
@@ -125,8 +125,9 @@ function select(element){
     if(!element) return;
     let selectData = element.textContent;
     inputBox.value = selectData;
+    inputBox.select();
     searchWrapper.classList.remove("active");
-    tagList.push(`<a class="button tag tag-angular" target="_blank" href="https://chan.sankakucomplex.com/?tags=${selectData}&commit=Search"><span class="">${element.textContent}</span></a>`);
+    tagList.push(`<a onclick="navigator.clipboard.writeText('${selectData}');" class="button tag tag-angular" ><span class="">${element.textContent}</span></a>`);
     tagListText.push(element.textContent);
     showTagList(tagList);
 }
