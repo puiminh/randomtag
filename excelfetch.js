@@ -3,33 +3,22 @@ bigData = [];
 var justFetched = false;
 
 async function fetchByExcel(searchKey = '') {
-    await chrome.storage.local.get(['tags'], async function(result) {
-            if(result.tags?.length>2) {
+            let tags = localStorage.getItem('tags'); 
+            if(tags?.length>2) {
                 justFetched = true;
-                console.log('data already fetched'+result.tags);
-                bigData = JSON.parse(result.tags);
-                return result.tags;
+                console.log('data already fetched'+ tags);
+                bigData = JSON.parse(tags);
+                return tags;
             } else {
                 console.log('now start fetch');
                 await fetching(searchKey).then((e)=> {
                      bigData = e;
                      const jsonTags = JSON.stringify(bigData);
                      localStorage.setItem('tags', jsonTags);
-                     chrome.storage.local.set({tags: jsonTags}, function() {
-                         console.log('Value is set to ', {tags: jsonTags});
+                     
                        });
-                     chrome.storage.local.get(['tags'], function(result) {
-                         try {
-                             console.log(JSON.parse(result.tags));           
-                         } catch (error) {
-                             console.error(error)
-                         }
-                       });
-                });
+                }
             }          
-    });
-}
-
 //https://capi-v2.sankakucomplex.com/posts/keyset?lang=en&limit=20&tags=fav:minhb3o
 
 fetchByExcel().then(()=> {
