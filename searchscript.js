@@ -22,9 +22,14 @@ inputBox.onkeyup = (e)=>{
     if(userData){
         icon.onclick = ()=>{
             let searchTag = tagListText.join('+');
+            let copySearchTag = tagListText.join(' ');
             webLink = `https://chan.sankakucomplex.com/?tags=${searchTag}&commit=Search`;
             linkTag.setAttribute("href", webLink);
             linkTag.click();
+            // inputBox.select();
+            // inputBox.setSelectionRange(0, 99999); // For mobile devices
+             // Copy the text inside the text field
+            navigator.clipboard.writeText(copySearchTag);
         }
         
         let count = 0;
