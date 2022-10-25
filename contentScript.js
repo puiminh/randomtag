@@ -7,11 +7,45 @@ var input = document.querySelector('#tags');
 var parentWrap = document.querySelector('#web-share');
 var postId = window.location.pathname.split('post/show/')[1];
 var added = false;
+
+
+
+var foo = new p5.Speech(); // speech synthesis object
+var fooL = new p5.SpeechRec(); // speech recognition object (will prompt for mic access)
+fooL.onResult = showResult; // bind callback function to trigger when speech is recognized
+fooL.lang = "en-US";
+
+function speak() {
+
+    foo.speak("Hello");
+}
+
+function showResult() {
+    let res = ''+fooL.resultString;
+    console.log('trigger: ',res.includes('thích'), fooL.resultString);
+    if (res.includes('thích')) {
+        document.querySelector('#add-to-favs > .favoriteIcon').click();
+    }
+    if (res.includes('tiến') || res.includes('phải')) {
+      sendMess({tab: "next"})
+    } else if (res.includes('lùi')) {
+      sendMess({tab: "back" || res.includes('trái')});
+    }
+    return fooL.resultString;
+}
+
+function listen() {
+    console.log('listen');
+    fooL.start();
+}
+
+
 (() => {
   document.onkeydown = function(evt){
     // evt = evt || window.event;
     // if(evt.shiftKey){
     // console.log('Shift');
+    console.log('after')
     if (document.activeElement != input) {
 
       if (evt.altKey) {
@@ -89,6 +123,12 @@ var added = false;
               added = false;
             }
 
+            break;
+          case 'o':
+            speak();
+            break;
+          case 'p':
+            listen();
             break;
           case 'ArrowUp':
           case 'ArrowDown':

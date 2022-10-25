@@ -7,14 +7,14 @@
       "service_worker": "background.js"
     },
     "externally_connectable": {
-      "matches": ["https://chan.sankakucomplex.com/*"]
+      "matches": ["<all_urls>"]
     },
     "manifest_version": 3,
     "author": "Bui Minh",
     "content_scripts": [
         {
           "matches": ["<all_urls>"],
-          "js": ["contentScript.js"]
+          "js": ["p5.js","p5.speech.js","contentScript.js"]
         }
       ],
     "action":{
@@ -23,7 +23,7 @@
     },
      "web_accessible_resources": [
         {
-          "resources": ["logo.png"
+          "resources": ["logo.png","p5.js","p5.speech.js"
           ],
           "matches": ["<all_urls>"]
         }
